@@ -3,7 +3,7 @@ package net.ict_campus.hoferc_burkharta.cardbox.model;
 /**
  * Created by Burkharta on 01.06.2016.
  */
-class PictureCardFace implements ICardSideModel{
+class PictureCardFace extends AbstractFace implements ICardSideModel{
     private static final CardFaceType type = CardFaceType.PICTURE;
     private String picture;
     private String text;

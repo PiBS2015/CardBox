@@ -1,5 +1,7 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model;
 
+import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.AbstractModel;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 /**
  * Created by Burkharta on 01.06.2016.
  */
-public class SetModel implements ISetModel {
+public class SetModel extends AbstractModel implements ISetModel {
     private String name;
     private List<ICardModel> content;
     //Not used atm.

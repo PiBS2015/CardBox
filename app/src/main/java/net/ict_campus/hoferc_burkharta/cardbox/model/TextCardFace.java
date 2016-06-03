@@ -3,7 +3,7 @@ package net.ict_campus.hoferc_burkharta.cardbox.model;
 /**
  * Created by Burkharta on 01.06.2016.
  */
-class TextCardFace implements ICardSideModel{
+class TextCardFace extends AbstractFace implements ICardSideModel{
     private static final CardFaceType type = CardFaceType.TEXT;
     private String text;
 
@@ -21,7 +21,7 @@ class TextCardFace implements ICardSideModel{
         if(text == null){
             throw new RuntimeException("Keine Ressource für die Kartenseite " + this + " vorhanden!");
         }
-        return new String[]{this.text};
+        return new String[]{this.text, null};
     }
 
     public void setRessource(String ressource) {
