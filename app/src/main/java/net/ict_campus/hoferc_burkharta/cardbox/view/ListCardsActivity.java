@@ -1,35 +1,35 @@
 package net.ict_campus.hoferc_burkharta.cardbox.view;
 
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
+import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.ServiceProvider;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 
 import java.util.List;
 
-public class ListDetailActivity extends AppCompatActivity {
+public class ListCardsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private List<SetModel> listOfSets;
+    private List<CardModel> listOfCards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        SetModel set = (SetModel) intent.getSerializableExtra("set");
         setContentView(R.layout.activity_list_detail);
-        listOfSets = ServiceProvider.getListOfSets(this);
+        listOfCards = ServiceProvider.getListOfCards(this, set);
 
         ListView listView = (ListView) findViewById(R.id.list_view);
-        listView.setAdapter(new ListAdapter(this, listOfSets));
+        listView.setAdapter(new ListAdapter(this, listOfCards));
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         this.setSupportActionBar(toolbar);

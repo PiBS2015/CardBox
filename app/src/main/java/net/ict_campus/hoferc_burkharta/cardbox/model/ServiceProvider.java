@@ -25,8 +25,17 @@ public class ServiceProvider {
         return sDao.getAllSets();
     }
 
+    public static List<CardModel> getListOfCards(Context context, SetModel set){
+        CardDao cDao = DatabaseHelper.getCardDao(context);
+        return cDao.getAllCards(set);
+    }
+
     public static void enterNewSet(Context context, SetModel set){
         DatabaseHelper.getSetDao(context).updateOrInsertSet(set);
+    }
+
+    public static void enterNewCard(Context context, CardModel card){
+        DatabaseHelper.getCardDao(context).insertCard(card);
     }
 
 }

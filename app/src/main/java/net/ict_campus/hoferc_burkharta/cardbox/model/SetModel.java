@@ -14,7 +14,7 @@ import java.util.List;
  * Eine Implementierung eines Sets. Ein solches Set hat einen Namen und mehrere normale Karten in keiner
  * Besonderen Reihenfolge.
  */
-public class SetModel extends AbstractModel {
+public class SetModel extends BaseDisplayModel {
     private String name;
     private List<CardModel> content;
     //Not used atm.
