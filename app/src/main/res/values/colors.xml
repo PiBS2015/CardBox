@@ -24,5 +24,4 @@
     <color name="base_colorPrimary">#3F51B5</color>
     <color name="base_colorPrimaryDark">#303F9F</color>
     <color name="base_colorAccent">#FF4081</color>
-    <color name="textColorPrimary">@color/colorPrimaryLighter</color>
 </resources>

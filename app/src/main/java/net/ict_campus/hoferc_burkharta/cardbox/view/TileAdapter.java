@@ -1,6 +1,7 @@
 package net.ict_campus.hoferc_burkharta.cardbox.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.Color;
@@ -22,7 +23,7 @@ import net.ict_campus.hoferc_burkharta.cardbox.R;
 /**
  * Created by Hoferc on 02.06.2016.
  */
-public class TileAdapter extends BaseAdapter {
+public class TileAdapter extends BaseAdapter implements View.OnClickListener {
     public Context mContext;
 
     private int[] tileColor;
@@ -90,9 +91,12 @@ public class TileAdapter extends BaseAdapter {
             textView.setBackgroundColor(tileColor[2]);
             textView.setTextColor(textColor[2]);
             textView.setText("Add a new Set!");
+            textView.setClickable(true);
+            textView.setOnClickListener(this);
         } else {
             textView.setText(mFiller[position]);
         }
+
         return textView;
     }
 
@@ -111,4 +115,10 @@ public class TileAdapter extends BaseAdapter {
     public String[] mFiller = {
             "Hallo", "Welt", "123", "Echo", "Baum", "Test", "Gugus", "Alpha Beta Gamma Delta Epsilon Etha Theta Zeta Iota Kappa Lambda My Ny Xi Omikron Pi Rho Sigma Tau", "Superkalifragilistikexpialigetisch"
     };
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(mContext, ListDetailActivity.class);
+        mContext.startActivity(intent);
+    }
 }

@@ -1,34 +1,34 @@
 package net.ict_campus.hoferc_burkharta.cardbox.view;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
-import net.ict_campus.hoferc_burkharta.cardbox.model.ModelInitializer;
 
-public class MainActivity extends AppCompatActivity {
+public class ListDetailActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private ContextCompat context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ModelInitializer.initializeModel(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_detail);
 
-        GridView gridView = (GridView) findViewById(R.id.grid_view);
-        gridView.setAdapter(new TileAdapter(this));
+        ListView listView = (ListView) findViewById(R.id.list_view);
+        listView.setAdapter(new ListAdapter(this));
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
-
+        this.setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -43,12 +43,11 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_list_detail_activity) {
-            Intent intent = new Intent(this, ListDetailActivity.class);
-            //intent.putExtra("toolbar", toolbar);
-            startActivity(intent);
-            return true;
-        }
+//        if (id == R.id.action_list_detail_activity) {
+//            Intent intent = new Intent(this, ListDetailActivity.class);
+//            startActivity(intent);
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
     }
 }
