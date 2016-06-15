@@ -3,36 +3,37 @@ package net.ict_campus.hoferc_burkharta.cardbox.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.DataSetObserver;
-import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridLayout;
 import android.widget.GridView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
+import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Hoferc on 02.06.2016.
  */
 public class TileAdapter extends BaseAdapter implements View.OnClickListener {
-    public Context mContext;
+    private Context mContext;
+    private List<SetModel> content;
+    private HashMap<TextView, SetModel> contentMap;
 
     private int[] tileColor;
     private int[] textColor;
 
     private int currentColor[] = new int[2];
 
-    public TileAdapter(Context c) {
+    public TileAdapter(Context c, List<SetModel> content) {
         mContext = c;
+        this.content = content;
+        contentMap = new HashMap<>();
 
         Resources r = c.getResources();
         tileColor = new int[] {r.getColor(R.color.colorSecondaryDark), r.getColor(R.color.colorPrimaryLight), r.getColor(R.color.colorPrimaryLighter)};
@@ -43,12 +44,17 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
 
     @Override
     public int getCount() {
-        return mFiller.length + 1;
+        return content.size() + 1;
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public SetModel getItem(int position) {
+        if(position != content.size()) {
+            return content.get(position);
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
@@ -84,18 +90,20 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
         textView.setBackgroundColor(currentColor[0]);
         textView.setTextColor(currentColor[1]);
 
-        if (position == mFiller.length) {
+        if (position == content.size()) {
             if (position%2 == 0) {
                 textView.setLayoutParams(new GridView.LayoutParams(size*2, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 64, mContext.getResources().getDisplayMetrics())));
             }
             textView.setBackgroundColor(tileColor[2]);
             textView.setTextColor(textColor[2]);
             textView.setText("Add a new Set!");
-            textView.setClickable(true);
-            textView.setOnClickListener(this);
         } else {
-            textView.setText(mFiller[position]);
+            SetModel obj = content.get(position);
+            contentMap.put(textView, obj);
+            textView.setText(obj.getName());
         }
+        textView.setClickable(true);
+        textView.setOnClickListener(this);
 
         return textView;
     }
@@ -112,13 +120,23 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
         return (int) (dimensionDp * density + 0.5f);
     }
 
-    public String[] mFiller = {
-            "Hallo", "Welt", "123", "Echo", "Baum", "Test", "Gugus", "Alpha Beta Gamma Delta Epsilon Etha Theta Zeta Iota Kappa Lambda My Ny Xi Omikron Pi Rho Sigma Tau", "Superkalifragilistikexpialigetisch"
-    };
+//    public String[] mFiller = {
+//            "Hallo", "Welt", "123", "Echo", "Baum", "Test", "Gugus", "Alpha Beta Gamma Delta Epsilon Etha Theta Zeta Iota Kappa Lambda My Ny Xi Omikron Pi Rho Sigma Tau", "Superkalifragilistikexpialigetisch"
+//    };
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(mContext, ListDetailActivity.class);
+        Intent intent = null;
+        TextView txt = (TextView) v;
+        SetModel set = this.contentMap.get(txt);
+        if(set == null) {
+            intent = new Intent(mContext, ListDetailActivity.class);
+        }
+        else{
+//            intent = new Intent(mContext, bla.class);
+//            intent.putExtra("set", set);
+        }
         mContext.startActivity(intent);
+
     }
 }

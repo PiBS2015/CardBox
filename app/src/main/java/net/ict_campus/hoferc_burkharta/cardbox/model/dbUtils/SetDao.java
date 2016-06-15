@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
-import net.ict_campus.hoferc_burkharta.cardbox.model.ISetModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 
 import java.util.ArrayList;
@@ -79,7 +78,7 @@ public class SetDao extends AbstractDao {
         return sets;
     }
 
-    public boolean deleteSet(ISetModel set){
+    public boolean deleteSet(SetModel set){
         AbstractModel dbLayerSet = (AbstractModel) set;
         if(dbLayerSet.isInDatabase()){
             SQLiteDatabase db = openDatabase(true);

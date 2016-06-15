@@ -11,20 +11,30 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by Burkharta on 01.06.2016.
+ * Eine Implementierung eines Sets. Ein solches Set hat einen Namen und mehrere normale Karten in keiner
+ * Besonderen Reihenfolge.
  */
-public class SetModel extends AbstractModel implements ISetModel {
+public class SetModel extends AbstractModel {
     private String name;
     private List<CardModel> content;
     //Not used atm.
     private String styleRessource;
     private String pictureRessource;
 
+    /**
+     * Erstellt ein neues, leeres Set
+     * @param name - Name des Sets
+     */
     public SetModel(String name){
         this.name = name;
         this.content = new ArrayList<>();
     }
 
+    /**
+     * Erzeu
+     * @param name
+     * @param content
+     */
     SetModel(String name, Collection<CardModel> content){
         this.content = new ArrayList<>(content);
         this.name = name;
@@ -38,31 +48,22 @@ public class SetModel extends AbstractModel implements ISetModel {
         this.content = cardsToAdd;
     }
 
-    public boolean deleteCard(ICardModel cardToDelete){
+    public boolean deleteCard(CardModel cardToDelete){
         return content.remove(cardToDelete);
     }
 
-    public void saveChanges(Context context){
-        CardDao dao = DatabaseHelper.getCardDao(context);
-
-    }
-
-    @Override
     public String getName() {
         return this.name;
     }
 
-    @Override
     public List<CardModel> getCards() {
         return this.content;
     }
 
-    @Override
     public String getStyleRessource() {
         return this.styleRessource;
     }
 
-    @Override
     public String getPictureRessource() {
         return this.pictureRessource;
     }
