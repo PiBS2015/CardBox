@@ -43,8 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
-        android:background="@color/colorBackgroundDark"
-        android:textColor="@color/colorPrimaryLighter"
+        android:background="@drawable/card_border"
+        android:textColor="@color/colorBackgroundDark"
         android:textAlignment="center"/>
 
 
