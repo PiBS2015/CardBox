@@ -137,9 +137,9 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
             intent = new Intent(mContext, ListDetailActivity.class);
         }
         else{
-            CardModel newCard = new CardBuilder(set)
-                    .setFaceText(CardSide.FRONT, "First")
-                    .setFaceText(CardSide.BACK, "Card")
+            CardModel newCard =new CardBuilder(set)
+                    .setFaceText(CardSide.FRONT, "Front")
+                    .setFaceText(CardSide.BACK, "Back")
                     .build();
             ServiceProvider.enterNewCard(mContext, newCard);
             intent = new Intent(mContext, ListCardsActivity.class);

@@ -31,7 +31,7 @@ public class SetModel extends BaseDisplayModel {
     }
 
     /**
-     * Erzeu
+     * Erzeugt ein Set mit
      * @param name
      * @param content
      */

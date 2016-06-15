@@ -29,7 +29,7 @@ public class ListDetailActivity extends AppCompatActivity {
         listOfSets = ServiceProvider.getListOfSets(this);
 
         ListView listView = (ListView) findViewById(R.id.list_view);
-        listView.setAdapter(new ListAdapter(this, listOfSets));
+        listView.setAdapter(new ListAdapter(this, listOfSets, ListCardsActivity.class, null));
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         this.setSupportActionBar(toolbar);

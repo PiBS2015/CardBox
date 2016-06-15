@@ -38,4 +38,8 @@ public class ServiceProvider {
         DatabaseHelper.getCardDao(context).insertCard(card);
     }
 
+    public static void updateCard(Context context, CardModel card){
+        DatabaseHelper.getCardDao(context).updateCard(card);
+    }
+
 }

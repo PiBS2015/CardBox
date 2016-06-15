@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import net.ict_campus.hoferc_burkharta.cardbox.model.AbstractFace;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
@@ -61,6 +62,7 @@ public class CardDao extends AbstractDao {
     private ContentValues getFaceVals(AbstractFace face){
         ContentValues frontFaceVals = new ContentValues();
         String[] ressources = face.getRessource();
+        Log.d("FACE", ressources[0] + " " + face.getType());
 
         frontFaceVals.put(FaceSchema.COL_TEXT, face.getRessource()[0]);
         frontFaceVals.put(FaceSchema.COL_BILD, face.getRessource()[1]);
@@ -70,6 +72,7 @@ public class CardDao extends AbstractDao {
 
     private ContentValues getCardVals(CardModel card, long idFront, long idBack){
         long idSet = getIdOfObject(card.getOwner());
+        Log.d("SETID", idSet + "");
         ContentValues cardVals = new ContentValues();
 
         cardVals.put(CardSchema.COL_DESCRIPTION, card.getDescription());
@@ -98,7 +101,7 @@ public class CardDao extends AbstractDao {
 
         Cursor result = db.query(
                 CardSchema.TABLE_NAME,
-                new String[]{CardSchema.COL_ID},
+                new String[]{CardSchema.COL_ID, CardSchema.COL_FRONT_FACE, CardSchema.COL_BACK_FACE},
                 CardSchema.COL_ID + " = ?",
                 new String[]{getIdOfObject(card) + ""},
                 null, null, null
@@ -106,8 +109,8 @@ public class CardDao extends AbstractDao {
 
         result.moveToFirst();
 
-        db.update(FaceSchema.TABLE_NAME, frontVals, FaceSchema.COL_ID + " = ?", new String[]{result.getLong(2) + ""});
-        db.update(FaceSchema.TABLE_NAME, backVals, FaceSchema.COL_ID + " = ?", new String[]{result.getLong(3) + ""});
+        db.update(FaceSchema.TABLE_NAME, frontVals, FaceSchema.COL_ID + " = ?", new String[]{result.getLong(1) + ""});
+        db.update(FaceSchema.TABLE_NAME, backVals, FaceSchema.COL_ID + " = ?", new String[]{result.getLong(2) + ""});
 
         db.update(CardSchema.TABLE_NAME, cardVals, CardSchema.COL_ID + " = ?", new String[]{result.getLong(0) + ""});
 

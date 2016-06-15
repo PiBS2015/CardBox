@@ -35,7 +35,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Flip side"/>
+            android:text="Flip side"
+            android:id="@+id/flip_card_button"/>
 
     </LinearLayout>
 
@@ -43,9 +44,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
-        android:background="@drawable/card_border"
-        android:textColor="@color/colorBackgroundDark"
-        android:textAlignment="center"/>
+        android:background="@color/colorBackgroundDark"
+        android:textColor="@color/colorPrimaryLight"
+        android:textAlignment="center"
+        android:id="@+id/card_edit_text"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Flip side"
+        android:id="@+id/save_card_button"/>
 
 
 </LinearLayout>
