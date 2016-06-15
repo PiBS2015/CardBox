@@ -6,5 +6,5 @@ package net.ict_campus.hoferc_burkharta.cardbox.model;
 public interface IGameStatistic {
     int getProgress();
     int getCorrect();
-    String getPassedTime();
+    long getPassedTime();
 }

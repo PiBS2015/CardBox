@@ -1,18 +1,20 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model;
 
-import java.util.Observable;
+import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.AbstractModel;
 
 /**
  * Created by Burkharta on 01.06.2016.
  */
-class CardModel implements  ICardModel {
+public class CardModel extends AbstractModel implements  ICardModel {
 
     private String description;
     private ICardSideModel[] faces;
     private String number;
+    private SetModel owningSet;
 
-    protected CardModel(){
+    protected CardModel(SetModel owner){
         this.faces = new TextCardFace[2];
+        this.owningSet = owner;
     }
 
     public void setDescription(String description){
@@ -29,6 +31,14 @@ class CardModel implements  ICardModel {
 
     public void setBackFace(ICardSideModel face){
         this.faces[1] = face;
+    }
+
+    public void setOwner(SetModel set){
+        this.owningSet = set;
+    }
+
+    public SetModel getOwner(){
+        return owningSet;
     }
 
     @Override
