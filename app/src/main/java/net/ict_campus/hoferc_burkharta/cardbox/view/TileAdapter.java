@@ -19,20 +19,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
+import net.ict_campus.hoferc_burkharta.cardbox.model.ISetModel;
+
+import java.util.List;
 
 /**
  * Created by Hoferc on 02.06.2016.
  */
 public class TileAdapter extends BaseAdapter implements View.OnClickListener {
-    public Context mContext;
+    private Context mContext;
+    private List<ISetModel> content;
 
     private int[] tileColor;
     private int[] textColor;
 
     private int currentColor[] = new int[2];
 
-    public TileAdapter(Context c) {
+    public TileAdapter(Context c, List<ISetModel> content) {
         mContext = c;
+        this.content = content;
 
         Resources r = c.getResources();
         tileColor = new int[] {r.getColor(R.color.colorSecondaryDark), r.getColor(R.color.colorPrimaryLight), r.getColor(R.color.colorPrimaryLighter)};
@@ -43,7 +48,7 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
 
     @Override
     public int getCount() {
-        return mFiller.length + 1;
+        return content.size() + 1;
     }
 
     @Override
@@ -84,7 +89,7 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
         textView.setBackgroundColor(currentColor[0]);
         textView.setTextColor(currentColor[1]);
 
-        if (position == mFiller.length) {
+        if (position == content.size()) {
             if (position%2 == 0) {
                 textView.setLayoutParams(new GridView.LayoutParams(size*2, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 64, mContext.getResources().getDisplayMetrics())));
             }
@@ -94,7 +99,7 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
             textView.setClickable(true);
             textView.setOnClickListener(this);
         } else {
-            textView.setText(mFiller[position]);
+            textView.setText(content.get(position).getName());
         }
 
         return textView;
@@ -112,9 +117,9 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
         return (int) (dimensionDp * density + 0.5f);
     }
 
-    public String[] mFiller = {
-            "Hallo", "Welt", "123", "Echo", "Baum", "Test", "Gugus", "Alpha Beta Gamma Delta Epsilon Etha Theta Zeta Iota Kappa Lambda My Ny Xi Omikron Pi Rho Sigma Tau", "Superkalifragilistikexpialigetisch"
-    };
+//    public String[] mFiller = {
+//            "Hallo", "Welt", "123", "Echo", "Baum", "Test", "Gugus", "Alpha Beta Gamma Delta Epsilon Etha Theta Zeta Iota Kappa Lambda My Ny Xi Omikron Pi Rho Sigma Tau", "Superkalifragilistikexpialigetisch"
+//    };
 
     @Override
     public void onClick(View v) {

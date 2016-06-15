@@ -56,8 +56,8 @@ public class SetDao extends AbstractDao {
         set.setCards(cards);
     }
 
-    public List<SetModel> getAllSets(){
-        List<SetModel> sets = new ArrayList<>();
+    public List<ISetModel> getAllSets(){
+        List<ISetModel> sets = new ArrayList<>();
 
         SQLiteDatabase db = openDatabase(false);
 
