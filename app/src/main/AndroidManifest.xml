@@ -11,15 +11,17 @@
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".view.ListDetailActivity"
-            android:parentActivityName=".view.MainActivity"></activity>
+            android:parentActivityName=".view.MainActivity" />
         <activity
             android:name=".view.EditCardActivity"
-            android:parentActivityName=".view.ListDetailActivity"></activity>
+            android:parentActivityName=".view.ListDetailActivity" />
+        <activity android:name=".view.ViewFullCardActivity"></activity>
     </application>
 
 </manifest>

@@ -15,6 +15,11 @@
         android:orderInCategory="100"
         android:title="EditCardActivity"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_view_full_card_activity"
+        android:orderInCategory="100"
+        android:title="ViewFullCardActivity"
+        app:showAsAction="never" />
     <!--<item-->
         <!--android:id="@+id/action_search"-->
         <!--android:orderInCategory="200"-->
