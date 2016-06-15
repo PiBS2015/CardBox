@@ -16,7 +16,6 @@ import net.ict_campus.hoferc_burkharta.cardbox.R;
 public class ListDetailActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private ContextCompat context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +42,16 @@ public class ListDetailActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-//        if (id == R.id.action_list_detail_activity) {
-//            Intent intent = new Intent(this, ListDetailActivity.class);
-//            startActivity(intent);
-//            return true;
-//        }
+        if (id == R.id.action_list_detail_activity) {
+            Intent intent = new Intent(this, ListDetailActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.action_edit_card_activity) {
+            Intent intent = new Intent(this, EditCardActivity.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }

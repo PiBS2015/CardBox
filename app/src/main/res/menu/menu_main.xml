@@ -10,6 +10,11 @@
         android:orderInCategory="100"
         android:title="ListDetailActivity"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_edit_card_activity"
+        android:orderInCategory="100"
+        android:title="EditCardActivity"
+        app:showAsAction="never" />
     <!--<item-->
         <!--android:id="@+id/action_search"-->
         <!--android:orderInCategory="200"-->
