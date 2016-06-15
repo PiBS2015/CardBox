@@ -52,7 +52,6 @@ public class ListAdapter extends BaseAdapter {
         if (convertView == null) {
             textView = new TextView(c);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-
         } else {
             textView = (TextView) convertView;
         }

@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
 import net.ict_campus.hoferc_burkharta.cardbox.model.ModelInitializer;
@@ -45,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_list_detail_activity) {
             Intent intent = new Intent(this, ListDetailActivity.class);
-            //intent.putExtra("toolbar", toolbar);
             startActivity(intent);
             return true;
         }
