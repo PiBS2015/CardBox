@@ -9,8 +9,6 @@ import net.ict_campus.hoferc_burkharta.cardbox.model.AbstractFace;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardSide;
-import net.ict_campus.hoferc_burkharta.cardbox.model.ICardModel;
-import net.ict_campus.hoferc_burkharta.cardbox.model.ISetModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 
 import java.util.ArrayList;
@@ -116,7 +114,7 @@ public class CardDao extends AbstractDao {
         db.close();
     }
 
-    public List<CardModel> getAllCards(ISetModel ofSet){
+    public List<CardModel> getAllCards(SetModel ofSet){
         SQLiteDatabase db = openDatabase(false);
         List<CardModel> cards = new ArrayList<>();
 

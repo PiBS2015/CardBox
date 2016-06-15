@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.widget.GridView;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
-import net.ict_campus.hoferc_burkharta.cardbox.model.ISetModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.ServiceProvider;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 
@@ -18,7 +17,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private List<ISetModel> listOfSets;
+    private List<SetModel> listOfSets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

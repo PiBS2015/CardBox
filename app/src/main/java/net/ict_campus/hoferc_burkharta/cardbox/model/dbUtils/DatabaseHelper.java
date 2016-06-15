@@ -5,10 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import net.ict_campus.hoferc_burkharta.cardbox.model.CardSide;
-import net.ict_campus.hoferc_burkharta.cardbox.model.ICardModel;
-import net.ict_campus.hoferc_burkharta.cardbox.model.ICardSideModel;
-
 /**
  * Created by Burkharta on 02.06.2016.
  */

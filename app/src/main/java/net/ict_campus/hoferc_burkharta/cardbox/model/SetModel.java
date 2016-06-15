@@ -14,7 +14,7 @@ import java.util.List;
  * Eine Implementierung eines Sets. Ein solches Set hat einen Namen und mehrere normale Karten in keiner
  * Besonderen Reihenfolge.
  */
-public class SetModel extends AbstractModel implements ISetModel {
+public class SetModel extends AbstractModel {
     private String name;
     private List<CardModel> content;
     //Not used atm.
@@ -48,26 +48,22 @@ public class SetModel extends AbstractModel implements ISetModel {
         this.content = cardsToAdd;
     }
 
-    public boolean deleteCard(ICardModel cardToDelete){
+    public boolean deleteCard(CardModel cardToDelete){
         return content.remove(cardToDelete);
     }
 
-    @Override
     public String getName() {
         return this.name;
     }
 
-    @Override
     public List<CardModel> getCards() {
         return this.content;
     }
 
-    @Override
     public String getStyleRessource() {
         return this.styleRessource;
     }
 
-    @Override
     public String getPictureRessource() {
         return this.pictureRessource;
     }

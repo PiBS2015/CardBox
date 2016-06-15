@@ -5,7 +5,7 @@ import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.AbstractModel;
 /**
  * Created by Burkharta on 01.06.2016.
  */
-public class CardModel extends AbstractModel implements  ICardModel {
+public class CardModel extends AbstractModel {
 
     private String description;
     private ICardSideModel[] faces;
@@ -41,7 +41,6 @@ public class CardModel extends AbstractModel implements  ICardModel {
         return owningSet;
     }
 
-    @Override
     public ICardSideModel getFace(CardSide which) {
         switch(which){
             case FRONT: return faces[0];
@@ -50,12 +49,10 @@ public class CardModel extends AbstractModel implements  ICardModel {
         throw new RuntimeException("Something went horribly wrong");
     }
 
-    @Override
     public String getDescription() {
         return description;
     }
 
-    @Override
     public String getNumber() {
         return number;
     }

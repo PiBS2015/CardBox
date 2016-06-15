@@ -17,9 +17,9 @@ public class CardBuilder {
         this.card = new CardModel(set);
     }
 
-    public CardBuilder(ICardModel card){
+    public CardBuilder(CardModel card){
         // Sicher, da im Moment die einzig möglich Klasse
-        this.card = (CardModel) card;
+        this.card = card;
 
         // Lade die Inhalte der Karte
         extractRessources(CardSide.FRONT);

@@ -20,7 +20,7 @@ public class ServiceProvider {
     private ServiceProvider(){
     }
 
-    public static List<ISetModel> getListOfSets(Context context){
+    public static List<SetModel> getListOfSets(Context context){
         SetDao sDao = DatabaseHelper.getSetDao(context);
         return sDao.getAllSets();
     }
