@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import net.ict_campus.hoferc_burkharta.cardbox.model.BaseDisplayModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ import java.util.List;
  */
 public class ListAdapter extends BaseAdapter {
 
-    private List<SetModel> content;
+    private List<? extends BaseDisplayModel> content;
     private HashMap<TextView, SetModel> contentMap;
     Context c;
 
-    public ListAdapter (Context c, List<SetModel> sets) {
+    public ListAdapter (Context c, List<? extends BaseDisplayModel> sets) {
         this.c = c;
         this.content = sets;
     }
@@ -37,7 +38,7 @@ public class ListAdapter extends BaseAdapter {
     }
 
     @Override
-    public SetModel getItem(int position) {
+    public BaseDisplayModel getItem(int position) {
         return content.get(position);
     }
 

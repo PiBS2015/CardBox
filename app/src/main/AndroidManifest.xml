@@ -21,7 +21,8 @@
         <activity
             android:name=".view.EditCardActivity"
             android:parentActivityName=".view.ListDetailActivity" />
-        <activity android:name=".view.ViewFullCardActivity"></activity>
+        <activity android:name=".view.ViewFullCardActivity" />
+        <activity android:name=".view.ListCardsActivity"></activity>
     </application>
 
 </manifest>

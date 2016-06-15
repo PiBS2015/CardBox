@@ -12,6 +12,10 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
+import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
+import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
+import net.ict_campus.hoferc_burkharta.cardbox.model.CardSide;
+import net.ict_campus.hoferc_burkharta.cardbox.model.ServiceProvider;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 
 import java.util.HashMap;
@@ -133,8 +137,13 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
             intent = new Intent(mContext, ListDetailActivity.class);
         }
         else{
-//            intent = new Intent(mContext, bla.class);
-//            intent.putExtra("set", set);
+            CardModel newCard = new CardBuilder(set)
+                    .setFaceText(CardSide.FRONT, "First")
+                    .setFaceText(CardSide.BACK, "Card")
+                    .build();
+            ServiceProvider.enterNewCard(mContext, newCard);
+            intent = new Intent(mContext, ListCardsActivity.class);
+            intent.putExtra("set", set);
         }
         mContext.startActivity(intent);
 
