@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_edit_card_activity:
-                intent = new Intent(this, ListDetailActivity.class);
+                intent = new Intent(this, EditCardActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_view_full_card_activity:
