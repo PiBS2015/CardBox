@@ -11,7 +11,10 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,23 +22,23 @@ import java.util.List;
  */
 public class ListAdapter extends BaseAdapter {
 
-    public String[] mFiller = {
-            "Hallo", "Welt", "123", "Echo", "Baum", "Test", "Gugus", "Alpha Beta Gamma Delta Epsilon Etha Theta Zeta Iota Kappa Lambda My Ny Xi Omikron Pi Rho Sigma Tau", "Superkalifragilistikexpialigetisch"
-    };
+    private List<SetModel> content;
+    private HashMap<TextView, SetModel> contentMap;
     Context c;
 
-    public ListAdapter (Context c) {
+    public ListAdapter (Context c, List<SetModel> sets) {
         this.c = c;
+        this.content = sets;
     }
 
     @Override
     public int getCount() {
-        return mFiller.length;
+        return content.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return mFiller[position];
+    public SetModel getItem(int position) {
+        return content.get(position);
     }
 
     @Override
@@ -56,7 +59,7 @@ public class ListAdapter extends BaseAdapter {
             textView = (TextView) convertView;
         }
 
-        textView.setText(mFiller[position]);
+        textView.setText(content.get(position).getName());
 
         return textView;
     }

@@ -12,18 +12,24 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
+import net.ict_campus.hoferc_burkharta.cardbox.model.ServiceProvider;
+import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
+
+import java.util.List;
 
 public class ListDetailActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private List<SetModel> listOfSets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_detail);
+        listOfSets = ServiceProvider.getListOfSets(this);
 
         ListView listView = (ListView) findViewById(R.id.list_view);
-        listView.setAdapter(new ListAdapter(this));
+        listView.setAdapter(new ListAdapter(this, listOfSets));
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         this.setSupportActionBar(toolbar);
