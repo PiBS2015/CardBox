@@ -10,6 +10,7 @@ import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardSide;
 import net.ict_campus.hoferc_burkharta.cardbox.model.ICardModel;
+import net.ict_campus.hoferc_burkharta.cardbox.model.ISetModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 
 import java.util.ArrayList;
@@ -24,9 +25,10 @@ public class CardDao extends AbstractDao {
         super(context);
     }
 
-    public void insertCard(CardModel card, SetModel set){
+    public void insertCard(CardModel card){
         SQLiteDatabase db = openDatabase(true);
 
+        SetModel set = card.getOwner();
         AbstractFace front = (AbstractFace) card.getFace(CardSide.FRONT);
         AbstractFace back = (AbstractFace) card.getFace(CardSide.BACK);
         long setId = getIdOfObject(set);
@@ -39,14 +41,17 @@ public class CardDao extends AbstractDao {
                 null, null, null);
 
         if(result.getCount() != 1){
+            result.close();
             db.close();
             throw new RuntimeException("Das Set " + set + " gibt es nicht!");
         }
 
+        result.close();
+
         long frontId = db.insertOrThrow(FaceSchema.TABLE_NAME, null, getFaceVals(front));
         long backId = db.insertOrThrow(FaceSchema.TABLE_NAME, null, getFaceVals(front));
 
-        long cardId = db.insertOrThrow(CardSchema.TABLE_NAME, null, getCardVals(card, setId, frontId, backId));
+        long cardId = db.insertOrThrow(CardSchema.TABLE_NAME, null, getCardVals(card, frontId, backId));
 
         setIdOfObject(card, cardId);
         setIdOfObject(front, frontId);
@@ -65,7 +70,8 @@ public class CardDao extends AbstractDao {
         return frontFaceVals;
     }
 
-    private ContentValues getCardVals(ICardModel card, long idSet, long idFront, long idBack){
+    private ContentValues getCardVals(CardModel card, long idFront, long idBack){
+        long idSet = getIdOfObject(card.getOwner());
         ContentValues cardVals = new ContentValues();
 
         cardVals.put(CardSchema.COL_DESCRIPTION, card.getDescription());
@@ -77,6 +83,15 @@ public class CardDao extends AbstractDao {
     }
 
     public void updateCard(CardModel card){
+
+        AbstractFace front = (AbstractFace) card.getFace(CardSide.FRONT);
+        AbstractFace back = (AbstractFace) card.getFace(CardSide.BACK);
+        AbstractModel dbLayerCard = (AbstractModel) card;
+
+        ContentValues frontVals = getFaceVals(front);
+        ContentValues backVals = getFaceVals(back);
+        ContentValues cardVals = getCardVals(card, getIdOfObject(front), getIdOfObject(back));
+
         if(!card.isInDatabase()){
             throw new RuntimeException("Die Karte " + card +" kann nicht updated werden, " +
                     "sie ist nicht in der Datenbank gespeichert!");
@@ -91,14 +106,21 @@ public class CardDao extends AbstractDao {
                 null, null, null
         );
 
+        result.moveToFirst();
+
+        db.update(FaceSchema.TABLE_NAME, frontVals, FaceSchema.COL_ID + " = ?", new String[]{result.getLong(2) + ""});
+        db.update(FaceSchema.TABLE_NAME, backVals, FaceSchema.COL_ID + " = ?", new String[]{result.getLong(3) + ""});
+
+        db.update(CardSchema.TABLE_NAME, cardVals, CardSchema.COL_ID + " = ?", new String[]{result.getLong(0) + ""});
+
         db.close();
     }
 
-    public List<ICardModel> getAllCards(SetModel ofSet){
+    public List<CardModel> getAllCards(ISetModel ofSet){
         SQLiteDatabase db = openDatabase(false);
-        List<ICardModel> cards = new ArrayList<>();
+        List<CardModel> cards = new ArrayList<>();
 
-        AbstractModel dbLayerSet = ofSet;
+        AbstractModel dbLayerSet = (AbstractModel) ofSet;
         long setId = dbLayerSet.getId();
 
         Cursor cardCursor = db.query(
@@ -124,7 +146,7 @@ public class CardDao extends AbstractDao {
                 );
         if(cardCursor.moveToFirst()){
             do{
-                CardBuilder builder = new CardBuilder();
+                CardBuilder builder = new CardBuilder((SetModel) ofSet);
                 CardModel card = builder.setFaceText(CardSide.FRONT, cardCursor.getString(2)).
                         setFacePicture(CardSide.FRONT, cardCursor.getString(1)).
                         setFaceText(CardSide.BACK, cardCursor.getString(5)).

@@ -29,4 +29,8 @@ public abstract class AbstractDao {
             return DatabaseHelper.getInstance(CONTEXT).getReadableDatabase();
         }
     }
+
+    protected Context getContext(){
+        return this.CONTEXT;
+    }
 }

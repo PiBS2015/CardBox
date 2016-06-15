@@ -1,5 +1,8 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model;
 
+import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.CardDao;
+import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.DatabaseHelper;
+
 /**
  * Created by Burkharta on 01.06.2016.
  */
@@ -10,8 +13,8 @@ public class CardBuilder {
     String frontPictureRessource;
     String backPictureRessource;
 
-    public CardBuilder(){
-        this.card = new CardModel();
+    public CardBuilder(SetModel set){
+        this.card = new CardModel(set);
     }
 
     public CardBuilder(ICardModel card){

@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface ISetModel {
     String getName();
-    List<ICardModel> getCards();
+    List<CardModel> getCards();
     //Soll & kann-Ziele
     String getStyleRessource();
     String getPictureRessource();
