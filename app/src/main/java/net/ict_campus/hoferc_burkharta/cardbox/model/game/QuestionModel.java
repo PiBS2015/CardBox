@@ -1,6 +1,7 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model.game;
 
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
+import net.ict_campus.hoferc_burkharta.cardbox.model.CardSide;
 import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.AbstractModel;
 
 import java.util.Date;
@@ -31,11 +32,20 @@ public class QuestionModel extends AbstractModel {
 
     /**
      * Stellt die Frage, startet den Timer
-     * @return die Frage
+     * @return Inhalt der Vorderseite der Karte
      */
-    public QuestionModel ask(){
+    public String[] ask(){
         startTime = new Date().getTime();
-        return this;
+        return this.card.getFace(CardSide.FRONT).getRessource();
+    }
+
+    /**
+     * Gibt den Inhalt der anderen Seite der Karte zurück
+     * @param side aktuelle Seite
+     * @return Inhalt der anderen Seite
+     */
+    public String[] flip(CardSide side){
+        return this.card.getFace(side.opposite()).getRessource();
     }
 
     /**
