@@ -13,6 +13,7 @@ import android.widget.ListView;
 import net.ict_campus.hoferc_burkharta.cardbox.R;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
+import net.ict_campus.hoferc_burkharta.cardbox.model.CardSide;
 import net.ict_campus.hoferc_burkharta.cardbox.model.ServiceProvider;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 
@@ -30,6 +31,7 @@ public class ListCardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         set = (SetModel) intent.getSerializableExtra("model");
+        ServiceProvider.clearSet(this, set);
         setContentView(R.layout.activity_list_detail);
 
         createNewCard = (Button) findViewById(R.id.new_list_button);
@@ -47,7 +49,10 @@ public class ListCardsActivity extends AppCompatActivity {
 
     private void buildNewCard(){
         CardModel card = new CardBuilder(set)
+                .setFaceText(CardSide.FRONT, "new Card")
+                .setFaceText(CardSide.BACK, "new Card")
                 .build();
+        ServiceProvider.enterNewCard(this, card);
         Intent intent = new Intent(this, EditCardActivity.class);
         intent.putExtra("model", card);
         startActivity(intent);
