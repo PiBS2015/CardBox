@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        menu.findItem(R.id.action_play_set_activity).setVisible(false);
+        menu.findItem(R.id.action_gotomain).setVisible(false);
         return true;
     }
 

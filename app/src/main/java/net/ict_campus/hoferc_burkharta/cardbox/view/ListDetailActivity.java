@@ -63,20 +63,10 @@ public class ListDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_list_detail_activity) {
-            Intent intent = new Intent(this, ListDetailActivity.class);
-            startActivity(intent);
+        if(MenuDispatcher.dispatch(item, this)) {
             return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-        if (id == R.id.action_edit_card_activity) {
-            Intent intent = new Intent(this, EditCardActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
