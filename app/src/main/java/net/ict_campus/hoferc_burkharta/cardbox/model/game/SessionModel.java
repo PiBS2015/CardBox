@@ -10,6 +10,7 @@ import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.QuestionDao;
 import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.SessionDao;
 import net.ict_campus.hoferc_burkharta.cardbox.model.game.QuestionModel;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
  * kann das Spiel fortgeführt werden. Das Spiel ist fertig, wenn jede Frage beantwortet wurde.
  * Die Session wird auch mit allen gestellten Fragen persistent gespeichert.
  */
-public class SessionModel extends AbstractModel implements IGameStatistic {
+public class SessionModel extends AbstractModel implements IGameStatistic, Serializable {
     //Daos zur persistenten Speicherung
     private SessionDao sDao;
     private QuestionDao qDao;
@@ -69,7 +70,7 @@ public class SessionModel extends AbstractModel implements IGameStatistic {
         QuestionModel currentQuestion = questions.get(current);
         current++;
         activeQuestion = currentQuestion;
-        return currentQuestion.ask();
+        return currentQuestion;
     }
 
     /**
