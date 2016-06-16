@@ -20,11 +20,15 @@
             android:parentActivityName=".view.MainActivity" />
         <activity
             android:name=".view.EditCardActivity"
-            android:parentActivityName=".view.MainActivity" />
-        <activity android:name=".view.ViewFullCardActivity" />
-        <activity android:name=".view.ListCardsActivity" />
-        <activity android:name=".view.EditSetActivity" />
-        <activity android:name=".view.PlaySetActivity"></activity>
+            android:parentActivityName=".view.ListCardsActivity" />
+        <activity android:name=".view.ViewFullCardActivity"
+            android:parentActivityName=".view.ListCardsActivity"/>
+        <activity android:name=".view.ListCardsActivity"
+            android:parentActivityName=".view.ListDetailActivity"/>
+        <activity android:name=".view.EditSetActivity"
+            android:parentActivityName=".view.ListDetailActivity"/>
+        <activity android:name=".view.PlaySetActivity"
+            android:parentActivityName=".view.MainActivity"></activity>
     </application>
 
 </manifest>
