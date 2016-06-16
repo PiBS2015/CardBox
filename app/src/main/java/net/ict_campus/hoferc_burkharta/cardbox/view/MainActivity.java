@@ -37,39 +37,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.findItem(R.id.action_play_set_activity).setVisible(false);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        Intent intent;
-        switch (id) {
-            case R.id.action_list_detail_activity:
-                intent = new Intent(this, ListDetailActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_edit_card_activity:
-                intent = new Intent(this, EditCardActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_view_full_card_activity:
-                intent = new Intent(this, ViewFullCardActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_edit_set_activity:
-                intent = new Intent(this, EditSetActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_play_set_activity:
-                intent = new Intent(this, PlaySetActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if(MenuDispatcher.dispatch(item, this)) {
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 }
