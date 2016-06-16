@@ -135,7 +135,7 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
         }
         else{
             intent = new Intent(mContext, ListCardsActivity.class);
-            intent.putExtra("set", set);
+            intent.putExtra("model", set);
         }
         mContext.startActivity(intent);
 

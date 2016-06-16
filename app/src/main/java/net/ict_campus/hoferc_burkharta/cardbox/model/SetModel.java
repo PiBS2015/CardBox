@@ -60,6 +60,10 @@ public class SetModel extends BaseDisplayModel {
         return this.name;
     }
 
+    public void setName(String newName){
+        this.name = newName;
+    }
+
     public List<CardModel> getCards() {
         return this.content;
     }

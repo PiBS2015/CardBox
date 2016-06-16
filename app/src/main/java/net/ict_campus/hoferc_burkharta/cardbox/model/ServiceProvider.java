@@ -83,4 +83,8 @@ public class ServiceProvider {
         DatabaseHelper.getCardDao(context).updateCard(card);
     }
 
+    public static void updateSet(Context context, SetModel set){
+        DatabaseHelper.getSetDao(context).updateOrInsertSet(set);
+    }
+
 }
