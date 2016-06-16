@@ -64,6 +64,10 @@ public class QuestionModel extends AbstractModel {
         return card;
     }
 
+    public String[] getDisplayRessource(CardSide side){
+        return card.getFace(side).getRessource();
+    }
+
     public long getPassedTime(){
         return endTime - startTime;
     }

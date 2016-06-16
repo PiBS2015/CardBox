@@ -131,7 +131,7 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
         TextView txt = (TextView) v;
         SetModel set = this.contentMap.get(txt);
         if(set == null) {
-            intent = new Intent(mContext, ListDetailActivity.class);
+            intent = new Intent(mContext, EditSetActivity.class);
         }
         else{
             intent = new Intent(mContext, PlaySetActivity.class);

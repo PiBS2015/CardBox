@@ -158,6 +158,7 @@ public class CardDao extends AbstractDao {
     public List<CardModel> getAllCards(SetModel ofSet){
         SQLiteDatabase db = openDatabase(false);
         List<CardModel> cards = new ArrayList<>();
+        Log.d(this.getClass().getSimpleName(), ofSet.getName());
 
         AbstractModel dbLayerSet = (AbstractModel) ofSet;
         long setId = dbLayerSet.getId();

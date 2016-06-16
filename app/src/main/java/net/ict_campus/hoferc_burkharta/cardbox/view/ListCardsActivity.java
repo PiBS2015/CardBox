@@ -25,7 +25,7 @@ public class ListCardsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        set = (SetModel) intent.getSerializableExtra("set");
+        set = (SetModel) intent.getSerializableExtra("model");
         setContentView(R.layout.activity_list_detail);
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);

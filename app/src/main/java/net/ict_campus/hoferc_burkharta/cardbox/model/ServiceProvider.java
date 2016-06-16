@@ -42,6 +42,11 @@ public class ServiceProvider {
         return cDao.getAllCards(set);
     }
 
+    public static void fillSet(Context context, SetModel set){
+        SetDao sDao = DatabaseHelper.getSetDao(context);
+        sDao.fillSet(set);
+    }
+
     /**
      * Löscht ein Set mit allen Karten.
      * @param context der Applikationskontext

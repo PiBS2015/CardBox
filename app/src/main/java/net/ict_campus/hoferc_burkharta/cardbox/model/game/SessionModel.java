@@ -70,6 +70,7 @@ public class SessionModel extends AbstractModel implements IGameStatistic, Seria
         QuestionModel currentQuestion = questions.get(current);
         current++;
         activeQuestion = currentQuestion;
+        currentQuestion.ask();
         return currentQuestion;
     }
 

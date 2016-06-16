@@ -1,5 +1,6 @@
 package net.ict_campus.hoferc_burkharta.cardbox.view;
 
+import android.app.Service;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
+import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardSide;
+import net.ict_campus.hoferc_burkharta.cardbox.model.ServiceProvider;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.game.QuestionModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.game.SessionFactory;
@@ -40,11 +43,20 @@ public class PlaySetActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         SetModel set = (SetModel) intent.getSerializableExtra("model");
+        ServiceProvider.fillSet(this, set);
+
         this.session = new SessionFactory(this).createSession(SessionFactory.Mode.FIXED, set);
 
         this.correctButton = (Button) findViewById(R.id.play_button_correct);
         this.wrongButton = (Button) findViewById(R.id.play_button_wrong);
         this.cardDisplay = (TextView) findViewById(R.id.play_card_display);
+
+        cardDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flip();
+            }
+        });
 
         correctButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +74,7 @@ public class PlaySetActivity extends AppCompatActivity {
 
         session.start();
 
+        Log.d(this.getClass().getSimpleName(), "I made it");
         step();
 
     }
@@ -70,7 +83,7 @@ public class PlaySetActivity extends AppCompatActivity {
         if(session.hasNext()){
             this.visibleSide = CardSide.FRONT;
             currentQuestion = session.nextQuestion();
-            cardDisplay.setText(currentQuestion.ask()[0]);
+            cardDisplay.setText(currentQuestion.getDisplayRessource(visibleSide)[0]);
         }
         else{
             Intent intent = new Intent(this, MainActivity.class);
@@ -82,6 +95,11 @@ public class PlaySetActivity extends AppCompatActivity {
         Log.d(this.getClass().getSimpleName(), isCorrect + "");
         currentQuestion.answer(isCorrect);
         step();
+    }
+
+    private void flip(){
+        cardDisplay.setText(currentQuestion.flip(visibleSide)[0]);
+        this.visibleSide = visibleSide.opposite();
     }
 
 }

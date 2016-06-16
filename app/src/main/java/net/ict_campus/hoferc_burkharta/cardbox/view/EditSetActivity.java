@@ -44,7 +44,14 @@ public class EditSetActivity extends AppCompatActivity {
     }
 
     private void saveSet(View v){
-        set.setName(this.text.getText() + "");
-        ServiceProvider.updateSet(this, set);
+        if(set == null){
+            ServiceProvider.enterNewSet(this, new SetModel(this.text.getText() + ""));
+        }
+        else {
+            set.setName(this.text.getText() + "");
+            ServiceProvider.updateSet(this, set);
+        }
+        Intent intent = new Intent(this, ListDetailActivity.class);
+        this.startActivity(intent);
     }
 }
