@@ -12,16 +12,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Burkharta on 03.06.2016.
+ * Das Database Access Object eines Sets. Diese Klasse bietet Diese Klasse bietet grundlegende
+ * CRUD-Funktionalität
  */
 public class SetDao extends AbstractDao {
 
     private Context context;
 
+    /**
+     * Erzeugt ein neues SessionDao mit gegebenem Kontext. Wird vom DatabaseHelper aufgerufen
+     * @param context der App-Context
+     */
     public SetDao(Context context){
         super(context);
     }
 
+    /**
+     * speichert ein SetModel in der Datenbank. Ist das Set bereits in der Datenbank vorhanden, so
+     * werden dessen Inhalte neu geschrieben.
+     * @param set das zu speichernde SetModel
+     */
     public void updateOrInsertSet(SetModel set){
         if(set.isInDatabase()){
             insertSetContent(openDatabase(true), set);
@@ -49,12 +59,21 @@ public class SetDao extends AbstractDao {
                 setContent);
     }
 
+    /**
+     * Die Karten werden aus der Datenbank in das Set geladen
+     * @param set das set, das gefüllt werden soll
+     */
     public void fillSet(SetModel set){
         CardDao dao = DatabaseHelper.getCardDao(context);
         List<CardModel> cards = dao.getAllCards(set);
         set.setCards(cards);
     }
 
+    /**
+     * Gibt eine Liste mit allen Sets in der Datenbank zurück. Diese sind noch ungefüllt, es sind
+     * also noch keine Karten vorhanden
+     * @return Liste aller Sets
+     */
     public List<SetModel> getAllSets(){
         List<SetModel> sets = new ArrayList<>();
 
@@ -78,6 +97,12 @@ public class SetDao extends AbstractDao {
         return sets;
     }
 
+    /**
+     * Löscht das Set aus der Datenbank. Beachte, dass zuerst alle zugehörigen Karten gelöscht
+     * werden müssen.
+     * @param set das zu löschende Set
+     * @return true, falls die Löschung erfolgreich war, false sonst.
+     */
     public boolean deleteSet(SetModel set){
         AbstractModel dbLayerSet = (AbstractModel) set;
         if(dbLayerSet.isInDatabase()){

@@ -23,33 +23,37 @@ public class SetModel extends BaseDisplayModel {
 
     /**
      * Erstellt ein neues, leeres Set
-     * @param name - Name des Sets
+     * @param name Name des Sets
      */
     public SetModel(String name){
         this.name = name;
         this.content = new ArrayList<>();
     }
 
-    /**
-     * Erzeugt ein Set mit
-     * @param name
-     * @param content
-     */
-    SetModel(String name, Collection<CardModel> content){
-        this.content = new ArrayList<>(content);
-        this.name = name;
-    }
+//    /**
+//     * Erzeugt ein Set mit
+//     * @param name
+//     * @param content
+//     */
+//    SetModel(String name, Collection<CardModel> content){
+//        this.content = new ArrayList<>(content);
+//        this.name = name;
+//    }
 
+    /**
+     * Fügt dem Set eine neue Karte hinzu
+     * @param cardToAdd die neue Karte
+     */
     public void addCard(CardModel cardToAdd){
         content.add(cardToAdd);
     }
 
+    /**
+     * Setzt den Karteninhalt der Liste neu
+     * @param cardsToAdd die neue KArtenliste
+     */
     public void setCards(List<CardModel> cardsToAdd){
         this.content = cardsToAdd;
-    }
-
-    public boolean deleteCard(CardModel cardToDelete){
-        return content.remove(cardToDelete);
     }
 
     public String getName() {
@@ -60,6 +64,9 @@ public class SetModel extends BaseDisplayModel {
         return this.content;
     }
 
+    /*
+    Not used at the moment
+     */
     public String getStyleRessource() {
         return this.styleRessource;
     }

@@ -1,7 +1,7 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils;
 
 /**
- * Created by Burkharta on 03.06.2016.
+ * Diese Klasse dient der Speicherung des Datenbankschemas der Facetabelle
  */
 class FaceSchema {
     static final String TABLE_NAME = "seite";

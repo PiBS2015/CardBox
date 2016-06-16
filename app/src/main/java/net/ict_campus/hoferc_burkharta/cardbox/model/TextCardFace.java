@@ -1,12 +1,18 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model;
 
+import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.AbstractModel;
+
 /**
- * Created by Burkharta on 01.06.2016.
+ * Diese Klasse beschreibt ein Face einer Karte mit nur Text.
  */
-class TextCardFace extends AbstractFace implements ICardSideModel{
+class TextCardFace extends AbstractModel implements ICardSideModel{
     private static final CardFaceType type = CardFaceType.TEXT;
     private String text;
 
+    /**
+     * Erstellt ein Face mit gegebenem Text
+     * @param ressource Text
+     */
     public TextCardFace(String ressource){
         this.text = ressource;
     }
@@ -17,6 +23,9 @@ class TextCardFace extends AbstractFace implements ICardSideModel{
     }
 
     @Override
+    /**
+     * @see ICardSideModel
+     */
     public String[] getRessource() {
         if(text == null){
             throw new RuntimeException("Keine Ressource für die Kartenseite " + this + " vorhanden!");
@@ -24,6 +33,10 @@ class TextCardFace extends AbstractFace implements ICardSideModel{
         return new String[]{this.text, null};
     }
 
+    /**
+     * Setzt den text neu
+     * @param ressource
+     */
     public void setRessource(String ressource) {
         this.text = ressource;
     }

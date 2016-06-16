@@ -1,11 +1,15 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model;
 
 /**
- * Created by Burkharta on 27.05.2016.
+ * enum für die verschiedenen Kartenseiten
  */
 public enum CardSide {
     FRONT, BACK;
 
+    /**
+     * Gibt die gegenüberliegende Seite zurück
+     * @return opposite
+     */
     public CardSide opposite(){
         switch(this){
             case FRONT:

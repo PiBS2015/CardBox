@@ -6,30 +6,38 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import net.ict_campus.hoferc_burkharta.cardbox.model.AbstractFace;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardSide;
+import net.ict_campus.hoferc_burkharta.cardbox.model.ICardSideModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Burkharta on 03.06.2016.
+ * Das Database Access Object einer Karte. Diese Klasse bietet grundlegende CRUD-Funktionalität
  */
 public class CardDao extends AbstractDao {
 
-    public CardDao(Context context){
+    /**
+     * Erzeugt ein neues CardDao mit gegebenem Kontext. Wird vom DatabaseHelper aufgerufen
+     * @param context
+     */
+    CardDao(Context context){
         super(context);
     }
 
+    /**
+     * speichert ein CardModel in der Datenbank.
+     * @param card das zu speichernde CardModel
+     */
     public void insertCard(CardModel card){
         SQLiteDatabase db = openDatabase(true);
 
         SetModel set = card.getOwner();
-        AbstractFace front = (AbstractFace) card.getFace(CardSide.FRONT);
-        AbstractFace back = (AbstractFace) card.getFace(CardSide.BACK);
+        ICardSideModel front = (ICardSideModel) card.getFace(CardSide.FRONT);
+        ICardSideModel back = (ICardSideModel) card.getFace(CardSide.BACK);
         long setId = getIdOfObject(set);
 
         Cursor result = db.query(
@@ -53,13 +61,18 @@ public class CardDao extends AbstractDao {
         long cardId = db.insertOrThrow(CardSchema.TABLE_NAME, null, getCardVals(card, frontId, backId));
 
         setIdOfObject(card, cardId);
-        setIdOfObject(front, frontId);
-        setIdOfObject(back, backId);
+        setIdOfObject((AbstractModel) front, frontId);
+        setIdOfObject((AbstractModel) back, backId);
 
         db.close();
     }
 
-    private ContentValues getFaceVals(AbstractFace face){
+    /**
+     * Extrahiert die Karteninformationen aus dem Face der Karte
+     * @param face die Kartenseite
+     * @return die ContentValues des face
+     */
+    private ContentValues getFaceVals(ICardSideModel face){
         ContentValues frontFaceVals = new ContentValues();
         String[] ressources = face.getRessource();
         Log.d("FACE", ressources[0]);
@@ -70,6 +83,13 @@ public class CardDao extends AbstractDao {
         return frontFaceVals;
     }
 
+    /**
+     * Liefert den kartenspezifischen Content der Karte (Description, idSet, idFront, isBack)
+     * @param card die Karte
+     * @param idFront ID des Front-faces
+     * @param idBack ID des Back-faces
+     * @return ContentValues der Karte
+     */
     private ContentValues getCardVals(CardModel card, long idFront, long idBack){
         long idSet = getIdOfObject(card.getOwner());
         Log.d("SETID", idSet + "");
@@ -83,6 +103,11 @@ public class CardDao extends AbstractDao {
         return cardVals;
     }
 
+    /**
+     * Passt den Eintrag in der Datenbank der gelieferten Karte an. Diese muss bereits in der Datenbank
+     * sein (sprich eine gültige ID haben)
+     * @param card die geänderte Karte
+     */
     public void updateCard(CardModel card){
 
         if(!card.isInDatabase()){
@@ -101,8 +126,8 @@ public class CardDao extends AbstractDao {
 
         result.moveToFirst();
 
-        AbstractFace front = (AbstractFace) card.getFace(CardSide.FRONT);
-        AbstractFace back = (AbstractFace) card.getFace(CardSide.BACK);
+        ICardSideModel front = (ICardSideModel) card.getFace(CardSide.FRONT);
+        ICardSideModel back = (ICardSideModel) card.getFace(CardSide.BACK);
         AbstractModel dbLayerCard = (AbstractModel) card;
 
         long idFront = result.getLong(1);
@@ -117,14 +142,19 @@ public class CardDao extends AbstractDao {
         db.update(FaceSchema.TABLE_NAME, backVals, FaceSchema.COL_ID + " = ?", new String[]{idBack + ""});
 
         // Modified Faces may not have IDs set correctly
-        setIdOfObject(front, idFront);
-        setIdOfObject(back, idBack);
+        setIdOfObject((AbstractModel) front, idFront);
+        setIdOfObject((AbstractModel) back, idBack);
 
         db.update(CardSchema.TABLE_NAME, cardVals, CardSchema.COL_ID + " = ?", new String[]{idCard + ""});
 
         db.close();
     }
 
+    /**
+     * Liefert alle Karten eines Sets
+     * @param ofSet welches Set
+     * @return Liste der Karten
+     */
     public List<CardModel> getAllCards(SetModel ofSet){
         SQLiteDatabase db = openDatabase(false);
         List<CardModel> cards = new ArrayList<>();
@@ -171,6 +201,11 @@ public class CardDao extends AbstractDao {
         return cards;
     }
 
+    /**
+     * Löscht die Karte aus der Datenbank. Die Karte muss bereits in der Datenbank gespeichert sein.
+     * @param card die zu löschende Karte
+     * @return true, falls die Löschung erfolgreich war, false sonst
+     */
     public boolean deleteCard(CardModel card){
 
         if(!card.isInDatabase()){

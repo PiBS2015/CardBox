@@ -52,6 +52,8 @@ public class EditCardActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         card = (CardModel) intent.getSerializableExtra("model");
+        TextView setName = (TextView) findViewById(R.id.set_name);
+        setName.setText(card.getOwner().getName());
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         this.setSupportActionBar(toolbar);

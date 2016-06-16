@@ -7,14 +7,23 @@ import android.database.sqlite.SQLiteDatabase;
 import net.ict_campus.hoferc_burkharta.cardbox.model.game.SessionModel;
 
 /**
- * Created by Burkharta on 03.06.2016.
+ * Das Database Access Object einer Session. Diese Klasse bietet nur die Funktion, eine Session
+ * einzufügen. Das Lesen der Einträge muss später noch implementiert werden.
  */
 public class SessionDao extends AbstractDao{
 
-    public SessionDao(Context context){
+    /**
+     * Erstellt ein neues SessionDao-Objekt mit gegebenem Context. Wird vom Databasehelper aufgerufen
+     * @param context
+     */
+    SessionDao(Context context){
         super(context);
     }
 
+    /**
+     * Speichert eine Session in der Datenbank.
+     * @param session die session
+     */
     public void insertSession(SessionModel session){
         if(session.isInDatabase()){
             //nothing to do

@@ -7,14 +7,23 @@ import android.database.sqlite.SQLiteDatabase;
 import net.ict_campus.hoferc_burkharta.cardbox.model.game.QuestionModel;
 
 /**
- * Created by Burkharta on 03.06.2016.
+ * Das Database Access Object einer Frage. Diese Klasse bietet nur die Funktion, eine Frage
+ * einzufügen. Das Lesen der Einträge muss später noch implementiert werden.
  */
 public class QuestionDao extends  AbstractDao{
 
-    public QuestionDao(Context context){
+    /**
+     * Erzeugt ein neues QuestionDao mit gegebenem Kontext. Wird vom DatabaseHelper aufgerufen
+     * @param context der Kontext
+     */
+    QuestionDao(Context context){
         super(context);
     }
 
+    /**
+     * Speichert eine Frage in der Datenbank
+     * @param question die Frage
+     */
     public void insertQuestion(QuestionModel question){
         SQLiteDatabase db = openDatabase(true);
 

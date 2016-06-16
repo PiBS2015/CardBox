@@ -5,7 +5,8 @@ import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.AbstractDao;
 import java.io.Serializable;
 
 /**
- * Created by Burkharta on 03.06.2016.
+ * Diese Klasse beschreibt die Datenbankanbindung der Models. Hier werden relevante Daten
+ * bezüglich der Verwaltung der Datenbankobjekten gespeichert und verwaltet (die ID).
  */
 public abstract class AbstractModel implements Serializable {
     long id = -1;
