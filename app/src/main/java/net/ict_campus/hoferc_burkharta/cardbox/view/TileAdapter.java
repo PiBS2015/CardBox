@@ -64,7 +64,7 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -101,7 +101,7 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
             }
             textView.setBackgroundColor(tileColor[2]);
             textView.setTextColor(textColor[2]);
-            textView.setText("Add a new Set!");
+            textView.setText(R.string.add_new_set);
         } else {
             SetModel obj = content.get(position);
             contentMap.put(textView, obj);

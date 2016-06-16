@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -60,12 +61,18 @@ public class ListAdapter extends BaseAdapter implements View.OnClickListener {
 
         if (convertView == null) {
             textView = new TextView(mContext);
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+
         } else {
             textView = (TextView) convertView;
+            //textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,48));
         }
         BaseDisplayModel obj = content.get(position);
         contentMap.put(textView, obj);
+
+        textView.setLayoutParams(new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT,(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 64, mContext.getResources().getDisplayMetrics())));
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+        textView.setGravity(Gravity.CENTER_VERTICAL);
+        textView.setPadding(16,0,0,0);
 
         textView.setText(content.get(position).getName());
         textView.setClickable(true);

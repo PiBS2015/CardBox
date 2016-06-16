@@ -10,6 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@color/colorPrimaryLighter"
+    android:weightSum="10"
     tools:context=".view.ListDetailActivity">
 
     <include
@@ -19,11 +20,18 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:id="@+id/list_view"
         android:layout_gravity="center"
-        android:adjustViewBounds="true">
+        android:adjustViewBounds="true"
+        android:layout_weight="9">
 
     </ListView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimaryLight"
+        android:textColor="@color/colorSecondaryDarker"
+        android:layout_weight="1" />
 
 </LinearLayout>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CardBox</string>
+    <string name="add_new_set">Neues Set hinzufügen</string>
+    <string name="add_new_card">Neue Karte hinzufügen</string>
 </resources>
