@@ -2,4 +2,9 @@
     <string name="app_name">CardBox</string>
     <string name="add_new_set">Neues Set hinzufügen</string>
     <string name="add_new_card">Neue Karte hinzufügen</string>
+    <string name="setname">Setname</string>
+    <string name="view_sets">Alle Sets anzeigen</string>
+    <string name="save">Speichern</string>
+    <string name="wrong">Falsch</string>
+    <string name="correct">Richtig</string>
 </resources>
