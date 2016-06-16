@@ -33,6 +33,6 @@
         android:background="@color/colorPrimaryLight"
         android:textColor="@color/colorSecondaryDarker"
         android:layout_weight="1"
-        android:id="@+id/new_list_button"/>
+        android:id="@+id/new_button"/>
 
 </LinearLayout>

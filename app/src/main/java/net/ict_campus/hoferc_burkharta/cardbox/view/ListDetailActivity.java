@@ -31,7 +31,8 @@ public class ListDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_detail);
         listOfSets = ServiceProvider.getListOfSets(this);
 
-        this.createNewButton = (Button) findViewById(R.id.new_list_button);
+        this.createNewButton = (Button) findViewById(R.id.new_button);
+        createNewButton.setText(R.string.add_new_set);
         createNewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +46,8 @@ public class ListDetailActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         this.setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
     }
 
     @Override

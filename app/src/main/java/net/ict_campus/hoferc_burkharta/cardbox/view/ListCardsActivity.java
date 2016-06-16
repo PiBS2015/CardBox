@@ -34,7 +34,8 @@ public class ListCardsActivity extends AppCompatActivity {
         ServiceProvider.clearSet(this, set);
         setContentView(R.layout.activity_list_detail);
 
-        createNewCard = (Button) findViewById(R.id.new_list_button);
+        createNewCard = (Button) findViewById(R.id.new_button);
+        createNewCard.setText(R.string.add_new_card);
         createNewCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
