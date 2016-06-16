@@ -27,6 +27,8 @@ public class EditCardActivity extends AppCompatActivity {
     private TextView editText;
     private TextView nameOfSet;
 
+    private Button flipButton;
+
     private CardModel card;
     private CardBuilder builder;
     private CardSide visibleSide = CardSide.FRONT;
@@ -93,6 +95,11 @@ public class EditCardActivity extends AppCompatActivity {
     private void flipCard(){
         builder.setFaceText(visibleSide, editText.getText() + "");
         this.visibleSide = visibleSide.opposite();
+        if (visibleSide == CardSide.FRONT) {
+            flipButton.setText(R.string.chg_to_backside);
+        } else {
+            flipButton.setText(R.string.chg_to_frontside);
+        }
         setUpCard();
     }
 
