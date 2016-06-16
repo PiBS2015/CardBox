@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
@@ -132,6 +133,10 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
         SetModel set = this.contentMap.get(txt);
         if(set == null) {
             intent = new Intent(mContext, EditSetActivity.class);
+        }
+        else if(ServiceProvider.getListOfCards(mContext, set).size() == 0){
+            Toast.makeText(this.mContext, R.string.no_cards_in_set, Toast.LENGTH_SHORT).show();
+            return;
         }
         else{
             intent = new Intent(mContext, PlaySetActivity.class);

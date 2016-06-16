@@ -31,7 +31,6 @@ public class ListCardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         set = (SetModel) intent.getSerializableExtra("model");
-        ServiceProvider.clearSet(this, set);
         setContentView(R.layout.activity_list_detail);
 
         createNewCard = (Button) findViewById(R.id.new_button);

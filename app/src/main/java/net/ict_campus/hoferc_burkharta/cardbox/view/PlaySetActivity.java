@@ -69,7 +69,7 @@ public class PlaySetActivity extends AppCompatActivity {
                 public void onSensorChanged(SensorEvent event) {
                     float[] values = event.values;
 
-                    if(normOfValues(values) > 4.) {
+                    if(normOfValues(values) > 3.) {
                         flip();
                     }
                 }
