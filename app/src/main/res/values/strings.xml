@@ -7,4 +7,7 @@
     <string name="save">Speichern</string>
     <string name="wrong">Falsch</string>
     <string name="correct">Richtig</string>
+    <string name="main_menu">Hauptmenü</string>
+    <string name="setlist">Setliste</string>
+    <string name="new_set">Neues Set</string>
 </resources>

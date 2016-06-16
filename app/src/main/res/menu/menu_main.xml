@@ -6,34 +6,18 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <item
-        android:id="@+id/action_list_detail_activity"
+        android:id="@+id/action_gotomain"
         android:orderInCategory="100"
-        android:title="ListDetailActivity"
+        android:title="@string/main_menu"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_edit_card_activity"
+        android:id="@+id/action_editablesetlist"
         android:orderInCategory="100"
-        android:title="EditCardActivity"
+        android:title="@string/setlist"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_view_full_card_activity"
+        android:id="@+id/action_newset"
         android:orderInCategory="100"
-        android:title="ViewFullCardActivity"
+        android:title="@string/new_set"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_edit_set_activity"
-        android:orderInCategory="100"
-        android:title="EditSetActivity"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_play_set_activity"
-        android:orderInCategory="100"
-        android:title="PlaySetActivity"
-        app:showAsAction="never" />
-    <!--<item-->
-        <!--android:id="@+id/action_search"-->
-        <!--android:orderInCategory="200"-->
-        <!--android:title="Search"-->
-        <!--android:icon="@drawable/computer"-->
-        <!--app:showAsAction="ifRoom" />-->
     </menu>
