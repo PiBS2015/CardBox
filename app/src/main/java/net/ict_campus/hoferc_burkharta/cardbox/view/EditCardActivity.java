@@ -38,14 +38,8 @@ public class EditCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_card);
 
-        Button flipButton = (Button) findViewById(R.id.flip_card_button);
+        flipButton = (Button) findViewById(R.id.flip_card_button);
         Button saveButton = (Button) findViewById(R.id.save_card_button);
-
-        if (visibleSide == CardSide.FRONT) {
-            flipButton.setText(R.string.chg_to_backside);
-        } else {
-            flipButton.setText(R.string.chg_to_frontside);
-        }
 
 
         flipButton.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +59,14 @@ public class EditCardActivity extends AppCompatActivity {
         Intent intent = getIntent();
         card = (CardModel) intent.getSerializableExtra("model");
 
+        //Get enum value as string
+        if(intent.getStringExtra("face").equals(CardSide.FRONT.toString())){
+            visibleSide = CardSide.FRONT;
+        }
+        else{
+            visibleSide = CardSide.BACK;
+        }
+
         TextView setName = (TextView) findViewById(R.id.set_name);
         setName.setText(card.getOwner().getName());
 
@@ -72,6 +74,13 @@ public class EditCardActivity extends AppCompatActivity {
         this.setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.editText = (TextView) findViewById(R.id.card_edit_text);
+
+        if (visibleSide == CardSide.FRONT) {
+            flipButton.setText(R.string.chg_to_backside);
+        } else {
+            flipButton.setText(R.string.chg_to_frontside);
+        }
+
         setUpCard();
 
     }
