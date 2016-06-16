@@ -20,9 +20,9 @@
             android:parentActivityName=".view.MainActivity" />
         <activity
             android:name=".view.EditCardActivity"
-            android:parentActivityName=".view.ListCardsActivity" />
+            android:parentActivityName=".view.ListDetailActivity" />
         <activity android:name=".view.ViewFullCardActivity"
-            android:parentActivityName=".view.ListCardsActivity"/>
+            android:parentActivityName=".view.ListDetailActivity"/>
         <activity android:name=".view.ListCardsActivity"
             android:parentActivityName=".view.ListDetailActivity"/>
         <activity android:name=".view.EditSetActivity"

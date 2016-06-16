@@ -29,8 +29,10 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Speichern"
+        android:layout_height="46dp"
+        android:background="@color/colorPrimaryLight"
+        android:textColor="@color/colorSecondaryDarker"
+        android:text="@string/save"
         android:id="@+id/save_set_button"/>
 
 
