@@ -15,9 +15,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Diese Klasse beschreibt eine Session, beziehungsweise eine Abfragerunde. Bei Start eines Spiels
- * wird diese Klasse mit einem Set erzeugt. Über die Methoden hasNext und nextQuestion kann das Spiel
- * fortgeführt werden. Das Spiel ist fertig, wenn jede Frage beantwortet wurde.
+ * Diese Klasse beschreibt eine Session, beziehungsweise eine Abfragerunde. Zur Erzeugung einer
+ * Session kann die SessionFactory verwendet werden. Über die Methoden hasNext und nextQuestion
+ * kann das Spiel fortgeführt werden. Das Spiel ist fertig, wenn jede Frage beantwortet wurde.
  * Die Session wird auch mit allen gestellten Fragen persistent gespeichert.
  */
 public class SessionModel extends AbstractModel implements IGameStatistic {
@@ -41,7 +41,7 @@ public class SessionModel extends AbstractModel implements IGameStatistic {
      * @param cards die Liste der Karten
      * @param context der Kontext
      */
-    public SessionModel(List<CardModel> cards, Context context){
+    SessionModel(List<CardModel> cards, Context context){
         questions = new LinkedList<>();
         for(CardModel card : cards){
             questions.add(new QuestionModel(this, card));
