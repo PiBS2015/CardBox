@@ -18,24 +18,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="2"
         android:weightSum="2"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:padding="16dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:id="@+id/set_name"/>
+            android:id="@+id/set_name"
+            android:textColor="@color/colorPrimaryDark"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/flip_card_button"/>
+            android:id="@+id/flip_card_button"
+            android:textColor="@color/colorSecondary"
+            android:background="@color/colorSecondaryLighter"/>
 
     </LinearLayout>
 
@@ -53,9 +52,11 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
         android:text="@string/save"
+        android:background="@color/colorPrimaryLight"
+        android:textColor="@color/colorSecondaryDarker"
         android:id="@+id/save_card_button"/>
 
 

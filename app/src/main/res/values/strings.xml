@@ -11,6 +11,6 @@
     <string name="setlist">Setliste</string>
     <string name="new_set">Neues Set</string>
     <string name="no_cards_in_set">Keine Karten im Set!</string>
-    <string name="chg_to_frontside">Zu Vorderseite wechseln</string>
-    <string name="chg_to_backside">Zu Backside wechseln</string>
+    <string name="chg_to_frontside"><u>Zu Vorderseite wechseln</u></string>
+    <string name="chg_to_backside"><u>Zu Backside wechseln</u></string>
 </resources>
