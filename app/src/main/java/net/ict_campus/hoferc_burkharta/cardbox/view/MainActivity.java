@@ -64,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, EditSetActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.action_play_set_activity:
+                intent = new Intent(this, PlaySetActivity.class);
+                startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -23,7 +23,8 @@
             android:parentActivityName=".view.MainActivity" />
         <activity android:name=".view.ViewFullCardActivity" />
         <activity android:name=".view.ListCardsActivity" />
-        <activity android:name=".view.EditSetActivity"></activity>
+        <activity android:name=".view.EditSetActivity" />
+        <activity android:name=".view.PlaySetActivity"></activity>
     </application>
 
 </manifest>

@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:elevation="4dp"
-    android:titleTextColor="@color/colorAccent"
-    android:titleTextAppearance="@color/colorBackgroundLight"
+    android:textColor="@color/colorAccent"
     >
 
 </android.support.v7.widget.Toolbar>
