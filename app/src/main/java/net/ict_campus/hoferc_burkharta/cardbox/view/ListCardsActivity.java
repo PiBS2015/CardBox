@@ -38,8 +38,7 @@ public class ListCardsActivity extends AppCompatActivity {
         super.onResume();
         listOfCards = ServiceProvider.getListOfCards(this, set);
         ListView listView = (ListView) findViewById(R.id.list_view);
-        listView.setAdapter(new ListAdapter(this, listOfCards, EditCardActivity.class, EditCardActivity.class));
-
+        listView.setAdapter(new ListAdapter(this, listOfCards, ViewFullCardActivity.class, ViewFullCardActivity.class));
     }
 
     @Override
