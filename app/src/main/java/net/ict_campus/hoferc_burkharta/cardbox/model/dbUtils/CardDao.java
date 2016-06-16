@@ -48,7 +48,7 @@ public class CardDao extends AbstractDao {
         result.close();
 
         long frontId = db.insertOrThrow(FaceSchema.TABLE_NAME, null, getFaceVals(front));
-        long backId = db.insertOrThrow(FaceSchema.TABLE_NAME, null, getFaceVals(front));
+        long backId = db.insertOrThrow(FaceSchema.TABLE_NAME, null, getFaceVals(back));
 
         long cardId = db.insertOrThrow(CardSchema.TABLE_NAME, null, getCardVals(card, frontId, backId));
 
@@ -62,7 +62,7 @@ public class CardDao extends AbstractDao {
     private ContentValues getFaceVals(AbstractFace face){
         ContentValues frontFaceVals = new ContentValues();
         String[] ressources = face.getRessource();
-        Log.d("FACE", ressources[0] + " " + face.getType());
+        Log.d("FACE", ressources[0]);
 
         frontFaceVals.put(FaceSchema.COL_TEXT, face.getRessource()[0]);
         frontFaceVals.put(FaceSchema.COL_BILD, face.getRessource()[1]);
@@ -85,14 +85,6 @@ public class CardDao extends AbstractDao {
 
     public void updateCard(CardModel card){
 
-        AbstractFace front = (AbstractFace) card.getFace(CardSide.FRONT);
-        AbstractFace back = (AbstractFace) card.getFace(CardSide.BACK);
-        AbstractModel dbLayerCard = (AbstractModel) card;
-
-        ContentValues frontVals = getFaceVals(front);
-        ContentValues backVals = getFaceVals(back);
-        ContentValues cardVals = getCardVals(card, getIdOfObject(front), getIdOfObject(back));
-
         if(!card.isInDatabase()){
             throw new RuntimeException("Die Karte " + card +" kann nicht updated werden, " +
                     "sie ist nicht in der Datenbank gespeichert!");
@@ -109,10 +101,26 @@ public class CardDao extends AbstractDao {
 
         result.moveToFirst();
 
-        db.update(FaceSchema.TABLE_NAME, frontVals, FaceSchema.COL_ID + " = ?", new String[]{result.getLong(1) + ""});
-        db.update(FaceSchema.TABLE_NAME, backVals, FaceSchema.COL_ID + " = ?", new String[]{result.getLong(2) + ""});
+        AbstractFace front = (AbstractFace) card.getFace(CardSide.FRONT);
+        AbstractFace back = (AbstractFace) card.getFace(CardSide.BACK);
+        AbstractModel dbLayerCard = (AbstractModel) card;
 
-        db.update(CardSchema.TABLE_NAME, cardVals, CardSchema.COL_ID + " = ?", new String[]{result.getLong(0) + ""});
+        long idFront = result.getLong(1);
+        long idBack = result.getLong(2);
+        long idCard = result.getLong(0);
+
+        ContentValues frontVals = getFaceVals(front);
+        ContentValues backVals = getFaceVals(back);
+        ContentValues cardVals = getCardVals(card, idFront, idBack);
+
+        db.update(FaceSchema.TABLE_NAME, frontVals, FaceSchema.COL_ID + " = ?", new String[]{idFront + ""});
+        db.update(FaceSchema.TABLE_NAME, backVals, FaceSchema.COL_ID + " = ?", new String[]{idBack + ""});
+
+        // Modified Faces may not have IDs set correctly
+        setIdOfObject(front, idFront);
+        setIdOfObject(back, idBack);
+
+        db.update(CardSchema.TABLE_NAME, cardVals, CardSchema.COL_ID + " = ?", new String[]{idCard + ""});
 
         db.close();
     }

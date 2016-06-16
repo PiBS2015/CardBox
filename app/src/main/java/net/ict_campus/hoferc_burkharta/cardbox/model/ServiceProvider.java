@@ -30,6 +30,15 @@ public class ServiceProvider {
         return cDao.getAllCards(set);
     }
 
+    public static void clearSet(Context context, SetModel set){
+        CardDao cDao = DatabaseHelper.getCardDao(context);
+        for(CardModel card : getListOfCards(context, set)){
+            cDao.deleteCard(card);
+        }
+        SetDao sDao = DatabaseHelper.getSetDao(context);
+        sDao.fillSet(set);
+    }
+
     public static void enterNewSet(Context context, SetModel set){
         DatabaseHelper.getSetDao(context).updateOrInsertSet(set);
     }

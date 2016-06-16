@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
+import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardSide;
 import net.ict_campus.hoferc_burkharta.cardbox.model.ServiceProvider;
@@ -24,6 +25,7 @@ public class EditCardActivity extends AppCompatActivity {
     private TextView editText;
 
     private CardModel card;
+    private CardBuilder builder;
     private CardSide visibleSide = CardSide.FRONT;
 
     @Override
@@ -51,7 +53,6 @@ public class EditCardActivity extends AppCompatActivity {
         Intent intent = getIntent();
         card = (CardModel) intent.getSerializableExtra("model");
 
-
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         this.setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -60,20 +61,33 @@ public class EditCardActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        builder = new CardBuilder(card);
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        card = builder.build();
+    }
+
     private void setUpCard(){
-        Log.d("FLIP", "should flip " + visibleSide + card.getFace(visibleSide).getRessource()[0]);
-        this.editText.setText("");
         this.editText.setText(card.getFace(visibleSide).getRessource()[0]);
     }
 
     private void flipCard(){
+        builder.setFaceText(visibleSide, editText.getText() + "");
         this.visibleSide = visibleSide.opposite();
         setUpCard();
     }
 
     private void saveCard(){
+        builder.setFaceText(visibleSide, editText.getText() + "");
+        card = builder.build();
         ServiceProvider.updateCard(this, this.card);
-        Toast.makeText(this, "Änderungen gespeichert", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Änderungen gespeichert: " + card.getFace(CardSide.FRONT).getRessource()[0], Toast.LENGTH_SHORT).show();
     }
 
 

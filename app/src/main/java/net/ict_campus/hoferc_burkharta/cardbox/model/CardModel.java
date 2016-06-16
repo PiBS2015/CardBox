@@ -13,6 +13,7 @@ public class CardModel extends BaseDisplayModel {
     private SetModel owningSet;
 
     protected CardModel(SetModel owner){
+        // Other kind not yet implemented
         this.faces = new TextCardFace[2];
         this.owningSet = owner;
     }

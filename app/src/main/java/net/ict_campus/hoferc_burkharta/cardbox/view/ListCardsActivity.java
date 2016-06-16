@@ -18,22 +18,28 @@ import java.util.List;
 public class ListCardsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private SetModel set;
     private List<CardModel> listOfCards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        SetModel set = (SetModel) intent.getSerializableExtra("set");
+        set = (SetModel) intent.getSerializableExtra("set");
         setContentView(R.layout.activity_list_detail);
-        listOfCards = ServiceProvider.getListOfCards(this, set);
-
-        ListView listView = (ListView) findViewById(R.id.list_view);
-        listView.setAdapter(new ListAdapter(this, listOfCards, EditCardActivity.class, EditCardActivity.class));
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         this.setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        listOfCards = ServiceProvider.getListOfCards(this, set);
+        ListView listView = (ListView) findViewById(R.id.list_view);
+        listView.setAdapter(new ListAdapter(this, listOfCards, EditCardActivity.class, EditCardActivity.class));
+
     }
 
     @Override

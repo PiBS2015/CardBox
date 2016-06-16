@@ -3,6 +3,7 @@ package net.ict_campus.hoferc_burkharta.cardbox.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -124,10 +125,6 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
         return (int) (dimensionDp * density + 0.5f);
     }
 
-//    public String[] mFiller = {
-//            "Hallo", "Welt", "123", "Echo", "Baum", "Test", "Gugus", "Alpha Beta Gamma Delta Epsilon Etha Theta Zeta Iota Kappa Lambda My Ny Xi Omikron Pi Rho Sigma Tau", "Superkalifragilistikexpialigetisch"
-//    };
-
     @Override
     public void onClick(View v) {
         Intent intent = null;
@@ -137,11 +134,6 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
             intent = new Intent(mContext, ListDetailActivity.class);
         }
         else{
-            CardModel newCard =new CardBuilder(set)
-                    .setFaceText(CardSide.FRONT, "Front")
-                    .setFaceText(CardSide.BACK, "Back")
-                    .build();
-            ServiceProvider.enterNewCard(mContext, newCard);
             intent = new Intent(mContext, ListCardsActivity.class);
             intent.putExtra("set", set);
         }

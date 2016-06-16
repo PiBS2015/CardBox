@@ -15,4 +15,6 @@ public abstract class AbstractFace extends AbstractModel implements ICardSideMod
     protected String getText(){
         return cardText;
     }
+
+
 }

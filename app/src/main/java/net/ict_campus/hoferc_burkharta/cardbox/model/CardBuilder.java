@@ -1,5 +1,7 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model;
 
+import android.util.Log;
+
 import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.CardDao;
 import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.DatabaseHelper;
 
@@ -18,7 +20,6 @@ public class CardBuilder {
     }
 
     public CardBuilder(CardModel card){
-        // Sicher, da im Moment die einzig möglich Klasse
         this.card = card;
 
         // Lade die Inhalte der Karte
@@ -28,9 +29,15 @@ public class CardBuilder {
 
     private void extractRessources(CardSide whichSide){
         String[] ressources = card.getFace(whichSide).getRessource();
-        frontText = ressources[0];
-        if(ressources.length >=2){
-            frontPictureRessource = ressources[1];
+        switch(whichSide){
+            case FRONT:
+                frontText = ressources[0];
+                if(ressources.length >= 2) frontPictureRessource = ressources[1];
+                break;
+            case BACK:
+                backText = ressources[0];
+                if(ressources.length >= 2) backPictureRessource = ressources[1];
+                break;
         }
     }
 
@@ -45,10 +52,12 @@ public class CardBuilder {
     }
 
     public CardBuilder setFaceText(CardSide whichSide, String text){
+
         switch(whichSide){
             case FRONT: frontText = text;
                 break;
             case BACK: backText = text;
+                break;
         }
         return this;
     }
@@ -79,7 +88,7 @@ public class CardBuilder {
             faces[0] = new TextCardFace(frontText);
         }
         if(isPictureFace(CardSide.BACK)){
-            faces[1] = new PictureCardFace(frontPictureRessource, frontText);
+            faces[1] = new PictureCardFace(backPictureRessource, backText);
         } else{
             faces[1] = new TextCardFace(backText);
         }
