@@ -10,6 +10,11 @@
     android:orientation="vertical"
     tools:context="net.ict_campus.hoferc_burkharta.cardbox.view.EditSetActivity">
 
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        ></include>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +25,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Speichern" />
 
 
 

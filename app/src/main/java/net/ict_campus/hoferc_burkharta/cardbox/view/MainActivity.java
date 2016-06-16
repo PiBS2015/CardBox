@@ -60,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, ViewFullCardActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.action_edit_set_activity:
+                intent = new Intent(this, EditSetActivity.class);
+                startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
