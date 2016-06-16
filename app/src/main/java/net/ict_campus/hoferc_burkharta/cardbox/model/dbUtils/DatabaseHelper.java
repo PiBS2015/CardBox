@@ -17,13 +17,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     /**
-     * Liefert eine Instanz des DatabaseHelpers bei gegebenem Context zurück
+     * Liefert eine Instanz des DatabaseHelpers bei gegebenem Context zurück. Klassen ausserhalb des
+     * Package können die Dao's benutzen, um Funktionen der Datenbank zu benützen
      * @param context
      * @return Instanz
      */
     static synchronized DatabaseHelper getInstance(Context context){
         if(instance == null){
-            instance = new DatabaseHelper(context.getApplicationContext());
+            instance = new DatabaseHelper(context);
         }
         return instance;
     }
@@ -74,15 +75,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static QuestionDao getQuestionDao(Context context){
         QuestionDao dao = new QuestionDao(context);
         return dao;
-    }
-
-    public static void createDB(SQLiteDatabase db) {
-        db.execSQL(SetSchema.CREATE_TABLE);
-        db.execSQL(SessionSchema.CREATE_TABLE);
-        db.execSQL(FaceSchema.CREATE_TABLE);
-        db.execSQL(CardSchema.CREATE_TABLE);
-        db.execSQL(QuestionSchema.CREATE_TABLE);
-        Log.v("WTF:", "database created!");
     }
 
 

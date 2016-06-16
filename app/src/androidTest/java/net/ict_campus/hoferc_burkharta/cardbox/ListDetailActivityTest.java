@@ -1,8 +1,11 @@
 package net.ict_campus.hoferc_burkharta.cardbox;
 
 import android.app.Activity;
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.test.ActivityUnitTestCase;
 import android.widget.ListView;
 
@@ -17,6 +20,8 @@ import net.ict_campus.hoferc_burkharta.cardbox.view.ListDetailActivity;
 public class ListDetailActivityTest extends ActivityUnitTestCase<ListDetailActivity> {
 
     private ListView setList;
+    private DatabaseHelper db;
+    private Context context;
 
     public ListDetailActivityTest() {
         super(ListDetailActivity.class);
@@ -26,15 +31,13 @@ public class ListDetailActivityTest extends ActivityUnitTestCase<ListDetailActiv
     protected void setUp() throws Exception {
         super.setUp();
 
-//        SQLiteDatabase db = ;
-//        DatabaseHelper.createDB(db);
+        context = this.getInstrumentation().getContext();
+        db = DatabaseHelper.getInstance(context);
 
         SetModel s = new SetModel("TestSet");
-        ServiceProvider.enterNewSet(getActivity(), s);
-
-        setList = (ListView) getActivity().findViewById(R.id.list_view);
-        startActivity(new Intent(getInstrumentation().getTargetContext(), ListDetailActivity.class), null, null);
-
+        // Nullpointer, weiss nicht wieso
+        SQLiteDatabase dBase = db.getWritableDatabase();
+        ServiceProvider.enterNewSet(context, s);
     }
 
     @Override

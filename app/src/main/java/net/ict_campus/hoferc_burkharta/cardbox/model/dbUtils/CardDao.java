@@ -116,6 +116,7 @@ public class CardDao extends AbstractDao {
         }
         SQLiteDatabase db = openDatabase(true);
 
+        //Hol die IDs der Kartenseiten und der Karte selbst
         Cursor result = db.query(
                 CardSchema.TABLE_NAME,
                 new String[]{CardSchema.COL_ID, CardSchema.COL_FRONT_FACE, CardSchema.COL_BACK_FACE},
@@ -126,18 +127,20 @@ public class CardDao extends AbstractDao {
 
         result.moveToFirst();
 
-        ICardSideModel front = (ICardSideModel) card.getFace(CardSide.FRONT);
-        ICardSideModel back = (ICardSideModel) card.getFace(CardSide.BACK);
+        ICardSideModel front = card.getFace(CardSide.FRONT);
+        ICardSideModel back = card.getFace(CardSide.BACK);
         AbstractModel dbLayerCard = (AbstractModel) card;
 
         long idFront = result.getLong(1);
         long idBack = result.getLong(2);
         long idCard = result.getLong(0);
 
+        //Generiere Inhalte der Objekte
         ContentValues frontVals = getFaceVals(front);
         ContentValues backVals = getFaceVals(back);
         ContentValues cardVals = getCardVals(card, idFront, idBack);
 
+        //Aktualisiere die Inhalte der Kartenseiten
         db.update(FaceSchema.TABLE_NAME, frontVals, FaceSchema.COL_ID + " = ?", new String[]{idFront + ""});
         db.update(FaceSchema.TABLE_NAME, backVals, FaceSchema.COL_ID + " = ?", new String[]{idBack + ""});
 
@@ -160,9 +163,9 @@ public class CardDao extends AbstractDao {
         List<CardModel> cards = new ArrayList<>();
         Log.d(this.getClass().getSimpleName(), ofSet.getName());
 
-        AbstractModel dbLayerSet = (AbstractModel) ofSet;
-        long setId = dbLayerSet.getId();
+        long setId = getIdOfObject(ofSet);
 
+        //Hole alle Karten mit den zugehörigen Seiten
         Cursor cardCursor = db.query(
                 CardSchema.TABLE_NAME +
                         " JOIN " + FaceSchema.TABLE_NAME +
@@ -186,7 +189,8 @@ public class CardDao extends AbstractDao {
                 );
         if(cardCursor.moveToFirst()){
             do{
-                CardBuilder builder = new CardBuilder((SetModel) ofSet);
+                //Baue die Karte zusammen
+                CardBuilder builder = new CardBuilder(ofSet);
                 CardModel card = builder.setFaceText(CardSide.FRONT, cardCursor.getString(2)).
                         setFacePicture(CardSide.FRONT, cardCursor.getString(1)).
                         setFaceText(CardSide.BACK, cardCursor.getString(5)).

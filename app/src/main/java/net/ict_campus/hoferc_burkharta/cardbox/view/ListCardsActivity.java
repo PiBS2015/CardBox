@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
+import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.ServiceProvider;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
@@ -20,6 +23,7 @@ public class ListCardsActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private SetModel set;
     private List<CardModel> listOfCards;
+    private Button createNewCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,25 @@ public class ListCardsActivity extends AppCompatActivity {
         set = (SetModel) intent.getSerializableExtra("model");
         setContentView(R.layout.activity_list_detail);
 
+        createNewCard = (Button) findViewById(R.id.new_list_button);
+        createNewCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buildNewCard();
+            }
+        });
+
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         this.setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void buildNewCard(){
+        CardModel card = new CardBuilder(set)
+                .build();
+        Intent intent = new Intent(this, EditCardActivity.class);
+        intent.putExtra("model", card);
+        startActivity(intent);
     }
 
     @Override

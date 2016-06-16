@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,12 +23,21 @@ public class ListDetailActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private List<SetModel> listOfSets;
+    private Button createNewButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_detail);
         listOfSets = ServiceProvider.getListOfSets(this);
+
+        this.createNewButton = (Button) findViewById(R.id.new_list_button);
+        createNewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNewSet();
+            }
+        });
 
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(new ListAdapter(this, listOfSets, ListCardsActivity.class, null));
@@ -40,6 +51,11 @@ public class ListDetailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    private void createNewSet(){
+        Intent intent = new Intent(this, EditSetActivity.class);
+        startActivity(intent);
     }
 
     @Override
