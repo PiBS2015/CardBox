@@ -39,6 +39,13 @@ public class EditCardActivity extends AppCompatActivity {
         Button flipButton = (Button) findViewById(R.id.flip_card_button);
         Button saveButton = (Button) findViewById(R.id.save_card_button);
 
+        if (visibleSide == CardSide.FRONT) {
+            flipButton.setText(R.string.chg_to_backside);
+        } else {
+            flipButton.setText(R.string.chg_to_frontside);
+        }
+
+
         flipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
