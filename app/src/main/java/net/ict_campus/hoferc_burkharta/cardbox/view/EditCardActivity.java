@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.Selection;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +27,7 @@ import net.ict_campus.hoferc_burkharta.cardbox.model.ServiceProvider;
 public class EditCardActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TextView editText;
+    private EditText editText;
 
     private Button flipButton;
 
@@ -76,7 +79,8 @@ public class EditCardActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         this.setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        this.editText = (TextView) findViewById(R.id.card_edit_text);
+
+        this.editText = (EditText) findViewById(R.id.card_edit_text);
 
         if (visibleSide == CardSide.FRONT) {
             flipButton.setText(R.string.chg_to_backside);
@@ -102,6 +106,8 @@ public class EditCardActivity extends AppCompatActivity {
 
     private void setUpCard(){
         this.editText.setText(card.getFace(visibleSide).getRessource()[0]);
+        Editable edText = editText.getText();
+        Selection.setSelection(edText, editText.length());
     }
 
     private void flipCard(){
