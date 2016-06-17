@@ -56,6 +56,7 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
             return content.get(position);
         }
         else{
+            Log.v("TEST", "null");
             return null;
         }
     }
