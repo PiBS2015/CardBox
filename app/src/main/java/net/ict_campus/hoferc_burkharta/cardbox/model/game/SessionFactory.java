@@ -5,7 +5,6 @@ import android.content.Context;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**

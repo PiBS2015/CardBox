@@ -1,10 +1,5 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model;
 
-import android.util.Log;
-
-import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.CardDao;
-import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.DatabaseHelper;
-
 /**
  * Diese Klasse dient dazu, eine neue Karte zu erstellen oder eine bestehende Karte zu verändern.
  * erzeugte Karten sind nicht persistent.

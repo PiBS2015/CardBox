@@ -1,7 +1,5 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils;
 
-import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.AbstractDao;
-
 import java.io.Serializable;
 
 /**

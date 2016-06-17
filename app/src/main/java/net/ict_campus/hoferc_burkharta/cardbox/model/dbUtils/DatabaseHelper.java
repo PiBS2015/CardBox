@@ -3,7 +3,6 @@ package net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * Diese Klasse dient der Erzeugung der Datenbank und Bereitstellung der Daos.

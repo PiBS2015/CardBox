@@ -1,13 +1,12 @@
 package net.ict_campus.hoferc_burkharta.cardbox.view;
 
-import android.app.Service;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -17,8 +16,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
-import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
-import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardSide;
 import net.ict_campus.hoferc_burkharta.cardbox.model.ServiceProvider;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;

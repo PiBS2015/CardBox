@@ -1,7 +1,5 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model;
 
-import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.AbstractModel;
-
 /**
  * Diese Klasse modelliert eine Karteikarte. Eine Karte hat zwei verschiedene Seiten, die das
  * Interface ICardSideModel erfüllen. Um eine Karte zu erstellen oder verändern steht die Klasse

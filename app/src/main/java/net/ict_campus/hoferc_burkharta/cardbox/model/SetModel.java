@@ -1,13 +1,6 @@
 package net.ict_campus.hoferc_burkharta.cardbox.model;
 
-import android.content.Context;
-
-import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.AbstractModel;
-import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.CardDao;
-import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.DatabaseHelper;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**

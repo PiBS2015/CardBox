@@ -8,7 +8,6 @@ import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.AbstractModel;
 import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.DatabaseHelper;
 import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.QuestionDao;
 import net.ict_campus.hoferc_burkharta.cardbox.model.dbUtils.SessionDao;
-import net.ict_campus.hoferc_burkharta.cardbox.model.game.QuestionModel;
 
 import java.io.Serializable;
 import java.util.Date;

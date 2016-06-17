@@ -3,7 +3,6 @@ package net.ict_campus.hoferc_burkharta.cardbox.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -14,9 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.ict_campus.hoferc_burkharta.cardbox.R;
-import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
-import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
-import net.ict_campus.hoferc_burkharta.cardbox.model.CardSide;
 import net.ict_campus.hoferc_burkharta.cardbox.model.ServiceProvider;
 import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 

@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import net.ict_campus.hoferc_burkharta.cardbox.model.BaseDisplayModel;
-import net.ict_campus.hoferc_burkharta.cardbox.model.SetModel;
 
 import java.util.HashMap;
 import java.util.List;
