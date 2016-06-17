@@ -50,7 +50,7 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
     @Override
-    public SetModel getItem(int position) {
+    public Object getItem(int position) {
         if(position != content.size()) {
             return content.get(position);
         }
