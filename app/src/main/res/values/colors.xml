@@ -12,17 +12,16 @@
     <color name="colorSecondaryDark">#303F9F</color>
     <color name="colorSecondaryDarker">#1A237E</color>
 
-    <color name="colorCardBlue">#A1E7F7</color>
+    <!-- Farbe für Linien auf den Karten
+    <color name="colorCardBlue">#A1E7F7</color> -->
 
-    <color name="colorAccentLight">#FFFF8D</color>
-    <color name="colorAccent">#FFFF00</color>
-    <color name="colorAccentDark">#FFEA00</color>
-    <color name="colorAccentDarker">#FFD600</color>
+    <color name="colorAccent">#FF4081</color>
 
     <color name="colorBackgroundLight">#EEEEEE</color>
     <color name="colorBackgroundDark">#424242</color>
 
+    <!-- Standard-Farben>
     <color name="base_colorPrimary">#3F51B5</color>
     <color name="base_colorPrimaryDark">#303F9F</color>
-    <color name="base_colorAccent">#FF4081</color>
+    <color name="base_colorAccent">#FF4081</color> -->
 </resources>
