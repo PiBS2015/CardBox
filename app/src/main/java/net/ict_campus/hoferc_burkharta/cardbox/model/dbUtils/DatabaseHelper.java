@@ -89,7 +89,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(FaceSchema.CREATE_TABLE);
         db.execSQL(CardSchema.CREATE_TABLE);
         db.execSQL(QuestionSchema.CREATE_TABLE);
-        Log.v(this.getClass().getSimpleName(), "database created!");
     }
 
     /**
@@ -101,7 +100,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.d(getClass().getSimpleName(), "Upgrade! " + oldVersion + ", " + newVersion);
         onCreate(db);
     }
 }

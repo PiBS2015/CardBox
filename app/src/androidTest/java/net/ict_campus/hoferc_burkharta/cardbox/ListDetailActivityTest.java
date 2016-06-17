@@ -32,7 +32,6 @@ public class ListDetailActivityTest extends ActivityUnitTestCase<ListDetailActiv
         super.setUp();
 
         context = this.getInstrumentation().getContext();
-        db = DatabaseHelper.getInstance(context);
 
         SetModel s = new SetModel("TestSet");
         // Nullpointer, weiss nicht wieso
