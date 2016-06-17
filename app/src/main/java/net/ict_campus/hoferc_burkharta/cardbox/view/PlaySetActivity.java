@@ -8,7 +8,6 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -150,7 +149,6 @@ public class PlaySetActivity extends AppCompatActivity {
     }
 
     private void answer(boolean isCorrect){
-        Log.d(this.getClass().getSimpleName(), isCorrect + "");
         currentQuestion.answer(isCorrect);
         step();
     }

@@ -3,7 +3,6 @@ package net.ict_campus.hoferc_burkharta.cardbox.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -86,13 +85,11 @@ public class ListAdapter extends BaseAdapter implements View.OnClickListener {
         TextView txt = (TextView) v;
         BaseDisplayModel m = this.contentMap.get(txt);
         if(m == null) {
-            Log.d("PRESS","Heya");
             intent = new Intent(mContext, targetIfMiss);
         }
         else{
             intent = new Intent(mContext, targetIfHit);
             intent.putExtra("model", m);
-            Log.d("PRESS","Heyo");
         }
         mContext.startActivity(intent);
     }
