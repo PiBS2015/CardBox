@@ -25,7 +25,6 @@ public class EditCardActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TextView editText;
-    private TextView nameOfSet;
 
     private Button flipButton;
 
@@ -120,7 +119,7 @@ public class EditCardActivity extends AppCompatActivity {
         builder.setFaceText(visibleSide, editText.getText() + "");
         card = builder.build();
         ServiceProvider.updateCard(this, this.card);
-        Toast.makeText(this, "Änderungen gespeichert: " + card.getFace(CardSide.FRONT).getRessource()[0], Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.edit_saved + card.getFace(CardSide.FRONT).getRessource()[0], Toast.LENGTH_SHORT).show();
     }
 
     @Override

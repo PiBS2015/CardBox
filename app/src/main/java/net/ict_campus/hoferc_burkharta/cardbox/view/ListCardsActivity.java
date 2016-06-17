@@ -26,6 +26,9 @@ public class ListCardsActivity extends AppCompatActivity {
     private List<CardModel> listOfCards;
     private Button createNewCard;
 
+    private String fronttext;
+    private String backtext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +52,8 @@ public class ListCardsActivity extends AppCompatActivity {
 
     private void buildNewCard(){
         CardModel card = new CardBuilder(set)
-                .setFaceText(CardSide.FRONT, "new Card")
-                .setFaceText(CardSide.BACK, "new Card")
+                .setFaceText(CardSide.FRONT, getResources().getString(R.string.front_card))
+                .setFaceText(CardSide.BACK, getResources().getString(R.string.back_card))
                 .build();
         ServiceProvider.enterNewCard(this, card);
         Intent intent = new Intent(this, EditCardActivity.class);

@@ -13,4 +13,7 @@
     <string name="no_cards_in_set">Keine Karten im Set!</string>
     <string name="chg_to_frontside"><u>Zu Vorderseite wechseln</u></string>
     <string name="chg_to_backside"><u>Zu Backside wechseln</u></string>
+    <string name="front_card">Vorne</string>
+    <string name="back_card">Hinten</string>
+    <string name="edit_saved">Änderungen gespeichert: </string>
 </resources>
