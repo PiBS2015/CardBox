@@ -60,7 +60,11 @@ public class EditCardActivity extends AppCompatActivity {
         card = (CardModel) intent.getSerializableExtra("model");
 
         //Get enum value as string
-        if(intent.getStringExtra("face").equals(CardSide.FRONT.toString())){
+        String cardSide = intent.getStringExtra("face");
+        if(cardSide == null){
+            visibleSide = CardSide.FRONT;
+        }
+        else if(cardSide.equals(CardSide.FRONT.toString())){
             visibleSide = CardSide.FRONT;
         }
         else{
