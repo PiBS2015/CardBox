@@ -3,6 +3,7 @@ package net.ict_campus.hoferc_burkharta.cardbox.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -124,21 +125,22 @@ public class TileAdapter extends BaseAdapter implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent intent = null;
         TextView txt = (TextView) v;
         SetModel set = this.contentMap.get(txt);
         if(set == null) {
-            intent = new Intent(mContext, EditSetActivity.class);
+            Intent intent = new Intent(mContext, EditSetActivity.class);
+            mContext.startActivity(intent);
         }
         else if(ServiceProvider.getListOfCards(mContext, set).size() == 0){
             Toast.makeText(this.mContext, R.string.no_cards_in_set, Toast.LENGTH_SHORT).show();
             return;
         }
         else{
-            intent = new Intent(mContext, PlaySetActivity.class);
+            Intent intent = new Intent(mContext, PlaySetActivity.class);
             intent.putExtra("model", set);
+            mContext.startActivity(intent);
         }
-        mContext.startActivity(intent);
+
 
     }
 }

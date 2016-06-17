@@ -12,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper instance;
 
     private static final String DATABASE_NAME = "card_box";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
 
     /**
@@ -99,6 +99,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE " + QuestionSchema.TABLE_NAME);
+        db.execSQL("DROP TABLE " + CardSchema.TABLE_NAME);
+        db.execSQL("DROP TABLE " + FaceSchema.TABLE_NAME);
+        db.execSQL("DROP TABLE " + SessionSchema.TABLE_NAME);
+        db.execSQL("DROP TABLE " + SetSchema.TABLE_NAME);
         onCreate(db);
     }
 }
