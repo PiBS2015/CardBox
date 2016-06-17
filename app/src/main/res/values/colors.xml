@@ -15,7 +15,7 @@
     <!-- Farbe für Linien auf den Karten
     <color name="colorCardBlue">#A1E7F7</color> -->
 
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FC0</color>
 
     <color name="colorBackgroundLight">#EEEEEE</color>
     <color name="colorBackgroundDark">#424242</color>
