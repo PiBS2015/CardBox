@@ -42,7 +42,7 @@ public class ListAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
     @Override
-    public BaseDisplayModel getItem(int position) {
+    public Object getItem(int position) {
         return content.get(position);
     }
 

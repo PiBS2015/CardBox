@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardBuilder;
 import net.ict_campus.hoferc_burkharta.cardbox.model.CardModel;
@@ -75,7 +74,6 @@ public class CardDao extends AbstractDao {
     private ContentValues getFaceVals(ICardSideModel face){
         ContentValues frontFaceVals = new ContentValues();
         String[] ressources = face.getRessource();
-        Log.d("FACE", ressources[0]);
 
         frontFaceVals.put(FaceSchema.COL_TEXT, face.getRessource()[0]);
         frontFaceVals.put(FaceSchema.COL_BILD, face.getRessource()[1]);
@@ -92,7 +90,6 @@ public class CardDao extends AbstractDao {
      */
     private ContentValues getCardVals(CardModel card, long idFront, long idBack){
         long idSet = getIdOfObject(card.getOwner());
-        Log.d("SETID", idSet + "");
         ContentValues cardVals = new ContentValues();
 
         cardVals.put(CardSchema.COL_DESCRIPTION, card.getDescription());
@@ -161,7 +158,6 @@ public class CardDao extends AbstractDao {
     public List<CardModel> getAllCards(SetModel ofSet){
         SQLiteDatabase db = openDatabase(false);
         List<CardModel> cards = new ArrayList<>();
-        Log.d(this.getClass().getSimpleName(), ofSet.getName());
 
         long setId = getIdOfObject(ofSet);
 
